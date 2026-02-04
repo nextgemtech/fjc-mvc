@@ -27,7 +27,7 @@
     .accordion-container.my-1
       .accordion.group{data: {controller: "accordion"}}
         .accordion-btn{data: {action: "click->accordion#toggle"}}
-          Form
+          Form Details
           = icon("fa-solid", "chevron-down", data: {"accordion-target": "iconDown"})
         .accordion-content.hidden{data: {"accordion-target": "content"}}
           = form_for(@order, url: update_shipping_details_admin_order_path(@order), html: {data: {turbo_confirm: 'Confirm update shipping details?', controller: "checkout--shipping-details"}}) do |f|

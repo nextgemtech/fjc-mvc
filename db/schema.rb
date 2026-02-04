@@ -33,7 +33,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
     t.datetime "created_at", null: false
     t.integer "position"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["position"], name: "index_active_storage_attachments_on_position"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Variant < ApplicationRecord
-  # Concerns
-  include RankedModel
+  acts_as_list scope: %i[product_id]
 
   # Relations
   belongs_to :product
@@ -15,7 +14,7 @@ class Variant < ApplicationRecord
   accepts_nested_attributes_for :variant_option_values
 
   # Scopes
-  scope :sort_by_position, -> { rank(:sort_order) }
+  scope :sort_by_position, -> { order(position: :asc) }
   scope :not_master, -> { where(is_master: false) }
   scope :master, -> { where(is_master: true) }
   scope :stock_sum, -> { sum(:count_on_hand) }
@@ -26,9 +25,6 @@ class Variant < ApplicationRecord
             .joins('LEFT JOIN product_options AS po ON po.id = vov.product_option_id')
             .group('variants.id, vov.variant_id')
         }
-
-  # Position
-  ranks :sort_order, column: :position, with_same: :product_id
 
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }

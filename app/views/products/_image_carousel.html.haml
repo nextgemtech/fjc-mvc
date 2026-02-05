@@ -1,4 +1,4 @@
-.grid{data: {controller: "products--carousel"}, class: "min-w-[460px] max-w-[460px] gap-2"} 
+.grid{data: {controller: "products--carousel"}, class: "min-w-[460px] max-w-[460px] h-fit gap-2"} 
   - if @carousel.present?
     .w-full.relative{class: "h-[420px] max-h-[420px]"}
       - @carousel.each_with_index do |image, index|

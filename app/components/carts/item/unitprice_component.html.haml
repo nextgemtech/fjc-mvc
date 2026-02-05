@@ -1,2 +1,2 @@
-%div{id: "cart-#{@cart.id}-unit-price"}
+.sm:block.hidden{id: "cart-#{@cart.id}-unit-price"}
   = render PriceRangeComponent.new lowest: @price, currency: @currency, discount: @discount

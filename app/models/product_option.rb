@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class ProductOption < ApplicationRecord
-  # Concerns
-  include RankedModel
+  acts_as_list
 
   # Relations
   belongs_to :product
@@ -11,12 +10,9 @@ class ProductOption < ApplicationRecord
   has_many :variant_option_values, dependent: :destroy
 
   # Scopes
-  scope :sort_by_position, -> { rank(:sort_order) }
+  scope :sort_by_position, -> { order(position: :asc) }
   scope :with_option_columns,
         -> { select('product_options.*, options.name, options.display_name, options.placeholder').joins(:option) }
-
-  # Position
-  ranks :sort_order, column: :position, with_same: :product_id
 
   # Generators
   before_create :variant_cleanup

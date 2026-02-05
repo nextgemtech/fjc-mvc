@@ -798,6 +798,51 @@ class VariantOptionValue
     def id_will_change!; end
 
     sig { returns(::String) }
+    def illustration; end
+
+    sig { params(value: ::String).returns(::String) }
+    def illustration=(value); end
+
+    sig { returns(T::Boolean) }
+    def illustration?; end
+
+    sig { returns(T.nilable(::String)) }
+    def illustration_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def illustration_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def illustration_came_from_user?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def illustration_change; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def illustration_change_to_be_saved; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def illustration_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def illustration_in_database; end
+
+    sig { returns(T.nilable([::String, ::String])) }
+    def illustration_previous_change; end
+
+    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
+    def illustration_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def illustration_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def illustration_was; end
+
+    sig { void }
+    def illustration_will_change!; end
+
+    sig { returns(::String) }
     def name; end
 
     sig { params(value: ::String).returns(::String) }
@@ -897,6 +942,9 @@ class VariantOptionValue
     def restore_id_value!; end
 
     sig { void }
+    def restore_illustration!; end
+
+    sig { void }
     def restore_name!; end
 
     sig { void }
@@ -904,9 +952,6 @@ class VariantOptionValue
 
     sig { void }
     def restore_updated_at!; end
-
-    sig { void }
-    def restore_value!; end
 
     sig { void }
     def restore_variant_id!; end
@@ -930,6 +975,12 @@ class VariantOptionValue
     def saved_change_to_id_value?; end
 
     sig { returns(T.nilable([::String, ::String])) }
+    def saved_change_to_illustration; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_illustration?; end
+
+    sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_name; end
 
     sig { returns(T::Boolean) }
@@ -946,12 +997,6 @@ class VariantOptionValue
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def saved_change_to_value; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_value?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_variant_id; end
@@ -1003,51 +1048,6 @@ class VariantOptionValue
 
     sig { void }
     def updated_at_will_change!; end
-
-    sig { returns(T.nilable(::String)) }
-    def value; end
-
-    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
-    def value=(value); end
-
-    sig { returns(T::Boolean) }
-    def value?; end
-
-    sig { returns(T.nilable(::String)) }
-    def value_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def value_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def value_came_from_user?; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def value_change; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def value_change_to_be_saved; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def value_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def value_in_database; end
-
-    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
-    def value_previous_change; end
-
-    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
-    def value_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def value_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def value_was; end
-
-    sig { void }
-    def value_will_change!; end
 
     sig { returns(::String) }
     def variant_id; end
@@ -1104,6 +1104,9 @@ class VariantOptionValue
     def will_save_change_to_id_value?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_illustration?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_name?; end
 
     sig { returns(T::Boolean) }
@@ -1111,9 +1114,6 @@ class VariantOptionValue
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_value?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_variant_id?; end

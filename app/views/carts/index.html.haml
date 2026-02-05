@@ -4,19 +4,19 @@
 
 .w-full.margin-max-screen.py-7
   .relative.grid{data: {controller: "carts--select-all items", proceed_checkout_url: proceed_checkout_carts_path, total_url: total_carts_path, bulk_delete_url: bulk_delete_carts_path, empty: "items-empty", "item": "cart-item"}}
-    .grid
-      .grid.gap-3.grid-cols-7.py-4.place-items-center.border
-        .col-span-3.w-full.flex.gap-3.items-center.pl-5
+    .grid.h-fit
+      .grid.gap-3.sm:grid-cols-7.py-4.sm:px-5.px-3.place-items-center.border
+        .col-span-3.w-full.flex.gap-3.items-center
           = check_box_tag "select-all", "yes", false, id: "checkbox-all", data: {"carts--select-all-target": "checkboxAll"}, class: "checkbox-primary"
           %label.font-semibold.text-primary.cursor-pointer{for: "checkbox-all"}
             = t("carts.table.thead.product")
-        .block
+        .sm:block.hidden
           = t("carts.table.thead.unit_price")
-        .block
+        .sm:block.hidden
           = t("carts.table.thead.quantity")
-        .block
+        .sm:block.hidden
           = t("carts.table.thead.subtotal")
-        .block
+        .sm:block.hidden
           = t("carts.table.thead.actions")
       .border-x.divide-y
         - if @carts.present?
@@ -24,7 +24,7 @@
             = render Carts::Item::BaseComponent.new cart:
         = render EmptyItemComponent.new text: "No carts yet", hide: @carts.present?
     .grid.sticky.bottom-0.w-full.bg-white.border
-      .flex.py-4.px-5.justify-between.gap-5.w-full
+      .flex.py-3.sm:py-4.sm:px-5.px-3.justify-between.gap-5.w-full.sm:flex-row.flex-col
         .flex.gap-6.items-center
           .flex.gap-3.items-center
             = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary"
@@ -32,7 +32,7 @@
               = "Select All (#{@carts.size})"
           %button.hover:text-red-600.disabled:text-gray-400.disabled:cursor-not-allowed{disabled: true, data: {action: "carts--select-all#bulkDelete", "carts--select-all-target": "bulkDeleteBtn"}}
             Delete
-        .flex.gap-3.items-center
+        .flex.gap-3.sm:items-center.sm:flex-row.flex-col
           .flex.items-center.gap-2
             .block{data: {"carts--select-all-target": "selected"}}
               Total (0 item)

@@ -733,6 +733,51 @@ class ShippingDetail
     sig { void }
     def created_at_will_change!; end
 
+    sig { returns(T::Boolean) }
+    def default; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def default=(value); end
+
+    sig { returns(T::Boolean) }
+    def default?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def default_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def default_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def default_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def default_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def default_change_to_be_saved; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def default_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def default_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def default_previous_change; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def default_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def default_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def default_was; end
+
+    sig { void }
+    def default_will_change!; end
+
     sig { returns(T.nilable(::String)) }
     def email; end
 
@@ -1016,6 +1061,9 @@ class ShippingDetail
     def restore_created_at!; end
 
     sig { void }
+    def restore_default!; end
+
+    sig { void }
     def restore_email!; end
 
     sig { void }
@@ -1034,6 +1082,9 @@ class ShippingDetail
     def restore_postal_code!; end
 
     sig { void }
+    def restore_save_information!; end
+
+    sig { void }
     def restore_shippable_id!; end
 
     sig { void }
@@ -1047,6 +1098,51 @@ class ShippingDetail
 
     sig { void }
     def restore_updated_at!; end
+
+    sig { returns(T::Boolean) }
+    def save_information; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def save_information=(value); end
+
+    sig { returns(T::Boolean) }
+    def save_information?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def save_information_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def save_information_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def save_information_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def save_information_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def save_information_change_to_be_saved; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def save_information_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def save_information_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def save_information_previous_change; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def save_information_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def save_information_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def save_information_was; end
+
+    sig { void }
+    def save_information_will_change!; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_barangay; end
@@ -1071,6 +1167,12 @@ class ShippingDetail
 
     sig { returns(T::Boolean) }
     def saved_change_to_created_at?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_default; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_default?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_email; end
@@ -1107,6 +1209,12 @@ class ShippingDetail
 
     sig { returns(T::Boolean) }
     def saved_change_to_postal_code?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_save_information; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_save_information?; end
 
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_shippable_id; end
@@ -1376,6 +1484,9 @@ class ShippingDetail
     def will_save_change_to_created_at?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_default?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_email?; end
 
     sig { returns(T::Boolean) }
@@ -1392,6 +1503,9 @@ class ShippingDetail
 
     sig { returns(T::Boolean) }
     def will_save_change_to_postal_code?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_save_information?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_shippable_id?; end

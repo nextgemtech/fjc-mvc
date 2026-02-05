@@ -23,7 +23,7 @@ class OrdersController < BaseController
 
   def cancel
     respond_to do |format|
-      if @order.cancel_variant_release(cancelled_by: 'buyer')
+      if @order.cancel_variant_release(cancelled_by: 'owner')
         format.turbo_stream if params[:redirect].blank?
         format.html { redirect_to orders_path }
       else

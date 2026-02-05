@@ -1,11 +1,11 @@
-.flex.w-full.gap-3.col-span-3.items-center.pl-5
-  .flex.gap-3.items-center{class: "w-[70%]"}
+.flex.w-full.sm:gap-3.gap-5.sm:col-span-3.sm:items-center.sm:pl-5.justify-between.sm:justify-normal
+  .flex.gap-3.items-center{class: "sm:w-[70%]"}
     = render Carts::Item::CheckboxComponent.new cart:, invalid: cannot?(:proceed_checkout, cart)
     .flex.gap-2
       = link_to product_path(id: cart.product_id) do
-        = image_tag cart.variant.product.thumbnail.variant(:small) || "thumbnail.png", class: "min-w-[75px] min-h-[75px] max-w-[75px] max-h-[75px] object-cover object-center border rounded-sm", id: "cart-#{cart.id}-thumbnail"
+        = image_tag cart.variant.product.thumbnail.variant(:small) || "thumbnail.png", class: "sm:min-w-[75px] sm:min-h-[75px] sm:max-w-[75px] sm:max-h-[75px] min-w-[65px] min-h-[65px] max-w-[65px] max-h-[65px] object-cover object-center border rounded-sm", id: "cart-#{cart.id}-thumbnail"
       .flex.flex-col.gap-1
-        = link_to product_path(id: cart.product_id), class: "leading-tight line-clamp-2 text-[15px]" do
+        = link_to product_path(id: cart.product_id), class: "leading-tight line-clamp-2 sm:text-[15px] text-sm" do
           = cart.product_name
         - if cart.user_id.blank? && cart.guest_session_id.present?
           .flex.items-center{id: "cart-#{cart.id}-guest-display", class: "gap-2.5"}

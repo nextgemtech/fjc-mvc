@@ -47,7 +47,7 @@
   }
 
   .tag-guest {
-    @apply bg-gray-600 px-2 rounded-md text-white w-fit text-sm h-fit;
+    @apply bg-gray-600 px-2 rounded-md text-white w-fit h-fit sm:text-sm text-xs;
   }
 
   .carousel-img {

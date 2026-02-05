@@ -1,17 +1,13 @@
 # frozen_string_literal: true
 
 class Option < ApplicationRecord
-  # Concerns
-  include RankedModel
+  acts_as_list
 
   # Relations
   has_many :product_option, dependent: :destroy
 
   # Scopes
-  scope :sort_by_position, -> { rank(:sort_order) }
-
-  # Position
-  ranks :sort_order, column: :position
+  scope :sort_by_position, -> { order(position: :asc) }
 
   # Validations
   validates :name, presence: true, uniqueness: true

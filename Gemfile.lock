@@ -335,8 +335,6 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    ranked-model (0.4.11)
-      activerecord (>= 5.2)
     rbi (0.2.3)
       prism (~> 1.0)
       sorbet-runtime (>= 0.5.9204)
@@ -520,7 +518,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 1.1)
-  acts_as_list
+  acts_as_list (~> 1.2)
   ancestry (~> 4.3)
   annotate
   bootsnap
@@ -550,7 +548,6 @@ DEPENDENCIES
   puma (~> 6.4)
   rack-tracker (~> 1.13)
   rails (~> 7.2.2)
-  ranked-model (~> 0.4.9)
   rspec-rails
   rspec-sorbet
   rubocop

@@ -24,3 +24,5 @@
         = render "errors"
         = render "actions", bnDisabled: true, adDisabled: true
         = render "variant_uuid", uuid: pub_variant_uuid(@product)
+      #product-description
+        = @product.description

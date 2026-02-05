@@ -75,6 +75,12 @@ rubocop
 rubocop -A
 ```
 
+Tapioca generate gems RBI
+
+```
+bin/tapioca gems
+```
+
 Sorbet type checking
 
 ```

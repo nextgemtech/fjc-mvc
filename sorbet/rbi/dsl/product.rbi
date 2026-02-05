@@ -353,9 +353,6 @@ class Product
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def build_master_variant(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def build_product_category(*args, &blk); end
-
     sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
     def build_rich_text_description(*args, &blk); end
 
@@ -368,17 +365,25 @@ class Product
     sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
     def build_thumbnail_blob(*args, &blk); end
 
+    # This method is created by ActiveRecord on the `Product` class because it declared `has_many :categories, through: :product_categories`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+    sig { returns(::Category::PrivateCollectionProxy) }
+    def categories; end
+
+    sig { params(value: T::Enumerable[::Category]).void }
+    def categories=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def category_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def category_ids=(ids); end
+
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_master_variant(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_master_variant!(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def create_product_category(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductCategory) }
-    def create_product_category!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::ActionText::RichText) }
     def create_rich_text_description(*args, &blk); end
@@ -455,14 +460,19 @@ class Product
     sig { params(value: T::Enumerable[::Option]).void }
     def options=(value); end
 
-    sig { returns(T.nilable(::ProductCategory)) }
-    def product_category; end
+    # This method is created by ActiveRecord on the `Product` class because it declared `has_many :product_categories`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::ProductCategory::PrivateCollectionProxy) }
+    def product_categories; end
 
-    sig { params(value: T.nilable(::ProductCategory)).void }
-    def product_category=(value); end
+    sig { params(value: T::Enumerable[::ProductCategory]).void }
+    def product_categories=(value); end
 
-    sig { params(attributes: T.untyped).returns(T.untyped) }
-    def product_category_attributes=(attributes); end
+    sig { returns(T::Array[T.untyped]) }
+    def product_category_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def product_category_ids=(ids); end
 
     sig { returns(T::Array[T.untyped]) }
     def product_option_ids; end
@@ -481,9 +491,6 @@ class Product
     sig { returns(T.nilable(::Variant)) }
     def reload_master_variant; end
 
-    sig { returns(T.nilable(::ProductCategory)) }
-    def reload_product_category; end
-
     sig { returns(T.nilable(::ActionText::RichText)) }
     def reload_rich_text_description; end
 
@@ -498,9 +505,6 @@ class Product
 
     sig { void }
     def reset_master_variant; end
-
-    sig { void }
-    def reset_product_category; end
 
     sig { void }
     def reset_rich_text_description; end

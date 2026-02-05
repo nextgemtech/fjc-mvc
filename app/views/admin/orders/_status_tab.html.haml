@@ -11,7 +11,7 @@
     = t("orders.tabs.completed")
   = link_to admin_orders_path(status: :cancelled), class: "w-fit tab #{"active" if params[:status] == "cancelled"}" do
     = t("orders.tabs.cancelled")
-  = link_to admin_orders_path(status: :returned), class: "w-fit tab #{"active" if params[:status] == "returned"}" do
+  = link_to admin_orders_path(status: [:returned, :refunded]), class: "w-fit tab #{"active" if params[:status]&.include?("returned") || params[:status]&.include?("refunded")}"do
     = t("orders.tabs.returned")
-  = link_to admin_orders_path(status: :refunded), class: "w-fit tab #{"active" if params[:status] == "refunded"}" do
+    = "/"
     = t("orders.tabs.refunded")

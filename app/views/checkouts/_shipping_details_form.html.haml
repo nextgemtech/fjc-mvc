@@ -11,9 +11,6 @@
             = sd.phone_field  :phone_no, required: true, autocomplete: "phone_no", data: {"phone-target": "input", action: "change->phone#telHiddenInput" }
             = sd.hidden_field :phone_no, "data-phone-target": "hidden"
         .field
-          = sd.label :street, "Street Name, Building, House No."
-          = sd.text_field :street, required: true
-        .field
           = sd.label :country
           = sd.text_field :country, value: "Philippines", required: true, readonly: true
         .field
@@ -29,6 +26,9 @@
           .field 
             = sd.label :postal_code, "Postal Code"
             = sd.number_field :postal_code
+        .field
+          = sd.label :street, "Street Name, Building, House No."
+          = sd.text_field :street, required: true
       .mt-5
         = render "order_items"
       .mt-5

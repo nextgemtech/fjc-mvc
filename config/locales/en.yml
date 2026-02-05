@@ -158,7 +158,7 @@ en:
       cancelled: "Cancelled"
       returned: "Returned" 
       refunded: "Refunded" 
-      return_refund: "Return Refund"
+      return_refund: "Return / Refund"
   images:
     success: "Successfully uploaded"
     failed: "Failed to upload"

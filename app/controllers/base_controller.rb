@@ -24,7 +24,7 @@ class BaseController < ApplicationController
       return guest_session
     end
 
-    guest_session = GuestSession.create
+    guest_session = GuestSession.create(user_agent: request.user_agent)
     cookies.signed.permanent[:guest_session] = guest_session.id
 
     guest_session

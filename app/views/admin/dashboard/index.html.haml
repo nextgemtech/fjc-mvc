@@ -1,3 +1,7 @@
-.margin-max-screen.py-7
-  .grid.grid-cols-3.gap-10
+.margin-max-screen.py-7.flex.flex-col.gap-5
+  .grid.grid-cols-3.gap-5
     = render "order_card"
+  .grid.grid-cols-1.gap-10
+    .bg-white.p-5.shadow
+      %canvas{"data-controller": "chart" , "data-chart-config-value": @chart_config.to_json} 
+

@@ -4,10 +4,10 @@
 = turbo_stream.remove "cart-#{@cart.id}"
 
 = turbo_stream.replace "cart-#{@common_cart.id}-total-price" do
-  = render Carts::Item::TotalpriceComponent.new cart: @common_cart, price: @common_cart.variant.price, currency: @common_cart.variant.product.currency, discount: variant.product.discount_percent
+  = render Carts::Item::TotalpriceComponent.new cart: @common_cart, price: @common_cart.variant.price, currency: @common_cart.variant.product.currency, discount: @common_cart.variant.product.discount_percent
 
 = turbo_stream.replace "cart-#{@common_cart.id}-unit-price" do
-  = render Carts::Item::UnitpriceComponent.new cart: @common_cart, price: @common_cart.variant.price, currency: @common_cart.variant.product.currency, discount: variant.product.discount_percent
+  = render Carts::Item::UnitpriceComponent.new cart: @common_cart, price: @common_cart.variant.price, currency: @common_cart.variant.product.currency, discount: @common_cart.variant.product.discount_percent
 
 = turbo_stream.replace "cart-#{@common_cart.id}-qty" do
   = render Carts::Item::QtyComponent.new cart: @common_cart, count_on_hand: @common_cart.variant.count_on_hand, sale: sale?(@common_cart.variant)

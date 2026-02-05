@@ -1,6 +1,5 @@
 .flex.flex-col.text-zinc-500.disabled:text-zinc-300.disabled:cursor-not-allowed.text-sm{id: "cart-#{@cart.id}-dropdown-variant-pair", data: {"carts--item-target": "dropdown", action: "dropdown#toggle click@window->dropdown#hide"}, disabled: cannot?(:update, @cart)}
   .flex.gap-2.items-center
     Variation:
-    -# = icon("fa-solid", "caret-down")
   = @variant_pair
   = render StockCountComponent.new count: @count_on_hand, sale: @sale

@@ -78,6 +78,9 @@ GEM
       minitest (>= 5.1)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
+    acts_as_list (1.2.6)
+      activerecord (>= 6.1)
+      activesupport (>= 6.1)
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ancestry (4.3.3)
@@ -517,6 +520,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations (~> 1.1)
+  acts_as_list
   ancestry (~> 4.3)
   annotate
   bootsnap

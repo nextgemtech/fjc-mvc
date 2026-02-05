@@ -9,7 +9,7 @@
       - if @order.guest_session_id.present?
         .tag-guest guest
   .grid.gap-4
-    = render "safe_buttons"
+    = render "action_buttons"
     = render "recieve_form"
     = render "order_items"
     = render "shipping_details"
@@ -18,4 +18,3 @@
     = render "internal_note"
     = render "return_form"
     = render "refund_form"
-    = render "dangerous_buttons"

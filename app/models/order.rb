@@ -46,12 +46,18 @@ class Order < ApplicationRecord
   def cancel_variant_release(cancelled_by:)
     Order.transaction do
       update!(order_status: OrderStatus.cancelled, cancelled_at: Time.current, cancelled_by:)
+      variant_release
+      self
+    rescue StandardError => e
+      logger.warn e
+      nil
+    end
+  end
 
-      items = order_items.where(variant: { trackable: true }).joins(:variant)
-      items.each do |item|
-        item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
-      end
-
+  def return_variant_release(return_reason:)
+    Order.transaction do
+      update!(order_status: OrderStatus.returned, return_reason:)
+      variant_release
       self
     rescue StandardError => e
       logger.warn e
@@ -61,12 +67,8 @@ class Order < ApplicationRecord
 
   def destroy_variant_release
     Order.transaction do
-      items = order_items.where(variant: { trackable: true }).joins(:variant)
-      items.each do |item|
-        item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
-      end
+      variant_release
       destroy
-
       self
     rescue StandardError => e
       logger.warn e
@@ -78,6 +80,15 @@ class Order < ApplicationRecord
     return unless user.present? && guest_session.present?
 
     errors.add(:ownership, I18n.t('orders.validate.ownership_cant_be_both'))
+  end
+
+  private
+
+  def variant_release
+    items = order_items.where(variant: { trackable: true }).joins(:variant)
+    items.each do |item|
+      item.variant.update!(count_on_hand: item.variant.count_on_hand + item.qty)
+    end
   end
 end
 

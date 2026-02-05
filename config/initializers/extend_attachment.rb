@@ -5,13 +5,10 @@ module ActiveStorageAttachmentExtension
 
   # re-run the application to make this extension take effect
   included do
-    include RankedModel
+    acts_as_list scope: %i[record_id record_type name]
 
     # Scopes
-    scope :sort_by_position, -> { rank(:sort_order) }
-
-    # Position
-    ranks :sort_order, column: :position, with_same: %i[record_type record_id]
+    scope :sort_by_position, -> { order(position: :asc) }
   end
 end
 

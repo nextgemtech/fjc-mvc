@@ -125,6 +125,7 @@ gem 'pilipinas', '~> 0.1.2'
 gem 'money-rails', '~> 1.15'
 
 # Sortable
+gem 'acts_as_list'
 gem 'ranked-model', '~> 0.4.9'
 
 # Nested Categories

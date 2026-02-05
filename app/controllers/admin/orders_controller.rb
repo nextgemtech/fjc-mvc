@@ -96,7 +96,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def return
-    if @order.update(order_status: OrderStatus.returned, return_reason: order_params[:return_reason])
+    if @order.return_variant_release(return_reason: order_params[:return_reason])
       redirect_to admin_order_url(@order), notice: I18n.t('orders.updated')
     else
       render :show, status: :unprocessable_entity

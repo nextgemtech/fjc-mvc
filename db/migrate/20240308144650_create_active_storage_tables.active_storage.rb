@@ -39,7 +39,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
       t.foreign_key :active_storage_blobs, column: :blob_id
 
       # Custom Fields
-      t.integer :position, index: true
+      t.integer :position
     end
 
     create_table :active_storage_variant_records, id: primary_key_type do |t|

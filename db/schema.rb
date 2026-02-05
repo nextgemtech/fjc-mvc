@@ -33,7 +33,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
     t.datetime "created_at", null: false
     t.integer "position"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["position"], name: "index_active_storage_attachments_on_position"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
@@ -80,6 +79,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
   end
 
   create_table "guest_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::DashboardController < Admin::BaseController
+  authorize_resource class: false
+
   def index
     @completed_orders = Order.where(order_status: { name: 'completed' })
                              .joins(:order_status).count

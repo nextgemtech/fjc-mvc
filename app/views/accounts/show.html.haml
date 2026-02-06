@@ -13,4 +13,7 @@
         %span
           = "Joined #{time_ago_in_words(current_user.created_at)} ago"
     - else
-      Currently as Guest
+      .flex.gap-2.items-center
+        = icon("fa-solid", "user", class: "w-4")
+        %span
+          Currently as Guest

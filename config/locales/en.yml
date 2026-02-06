@@ -19,6 +19,8 @@ en:
           products: "Products"
           account: "My Account"
           orders: "My Orders"
+          sign_in: "Sign In" 
+          register: "Register" 
   error:
     something_went_wrong: "Something went wrong."
     unathorized_action: "Unauthorized action"

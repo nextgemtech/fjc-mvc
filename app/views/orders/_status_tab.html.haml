@@ -1,4 +1,4 @@
-%ul.flex.text-base.border-b-2.border-gray-200.grid.grid-cols-7
+%ul.text-base.border-b-2.border-gray-200.sm:grid.grid-cols-7.hidden
   %li
     = render TabLinkComponent.new path: orders_path(page: params[:page]) do
       = t("orders.tabs.all")

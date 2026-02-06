@@ -2,5 +2,6 @@
   %td= user.name
   %td= user.phone_no
   %td= user.email
-  %td= user.admin? ? "Admin" : "Regular"
+  %td= user.admin? ? "System" : "Regular"
+  %td= user.provider.humanize
   %td

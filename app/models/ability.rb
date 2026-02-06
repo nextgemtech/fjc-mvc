@@ -51,6 +51,7 @@ class Ability
     can :manage, Product
     can :manage, Variant, is_master: false, product: { has_variant: true }
     can :manage, :image
+    can :manage, :dashboard
     can :manage, :stock
 
     # Order

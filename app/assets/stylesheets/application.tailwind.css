@@ -39,7 +39,7 @@
   }
 
   .checkbox-primary {
-    @apply w-[18px] h-[18px] rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed cursor-pointer;
+    @apply sm:w-[18px] sm:h-[18px] h-5 w-5 rounded-sm text-primary border border-gray-400 focus:ring-0 disabled:bg-stone-200 disabled:text-gray-200 disabled:cursor-not-allowed cursor-pointer;
   }
 
   .tag-primary {

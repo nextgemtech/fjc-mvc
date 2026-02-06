@@ -5,10 +5,4 @@
 .w-full.margin-max-screen.gap-10.py-8
   .grid.grid-cols-4.md:grid-cols-5.gap-2.sm:gap-4.md:gap-5
     - @products.each do |product|
-      = link_to product_path(product), class: "max-w-60 group" do
-        .relative.overflow-hidden.rounded.border
-          = image_tag product.thumbnail.attached? ? product.thumbnail.variant(:card) : "thumbnail.png", class: "rounded-sm object-cover object-center sm:group-hover:scale-105 transition-transform duration-300 h-20 min-h-20 sm:h-32 sm:min-h-32 lg:h-40 lg:min-h-40 xl:h-52 xl:min-h-52 w-full", size: 320
-        .mt-2.font-medium.text-xs.sm:text-sm.md:text-base
-          .block= product.name
-          .text-primary.product-card-price
-            = render PriceRangeComponent.new lowest: product.lowest_price, currency: product.currency, discount: product.discount_percent
+      = render "item", product:

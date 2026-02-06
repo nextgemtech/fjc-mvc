@@ -3,7 +3,7 @@
     .flex.gap-3.justify-between.py-3
       .text-sm.uppercase
         - if order.placed_at.present?
-          .text-gray-500
+          .text-gray-500.sm:text-base.text-sm
             = "Order placed #{time_ago_in_words(order.placed_at)} ago"
         - else
           .text-red-600
@@ -26,25 +26,25 @@
     .divide-y
       - order.order_items.each do |order_item|
         = render "order_item", order_item:
-  .px-5.py-4.flex.justify-between
+  .px-5.py-4.flex.sm:justify-between.sm:flex-row.flex-col.sm:gap-5.gap-3
     .block
       - if order.placed_at.blank?
         .text-sm.text-gray-500
-          Non-placed orders will be removed within 24 hours
-    .grid.gap-4
-      .flex.items-center.gap-2.justify-end
+          Non-placed orders will be removed within 12 hours
+    .grid.sm:gap-4.gap-3
+      .flex.items-center.gap-2.sm:justify-end
         .text-sm
           Order Total:
-        .text-primary.text-xl
+        .text-primary.sm:text-xl.text-lg
           = price_with_currency(order.total, currency_symbol(MoneyRails.default_currency.id.to_s))
-      .flex.justify-end.gap-3
+      .flex.sm:justify-end.gap-3
         - if can?(:cancel, order)
-          = button_to "Cancel Order", cancel_order_path(order), method: :delete, class: "bg-red-600 px-9 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
+          = button_to "Cancel Order", cancel_order_path(order), method: :delete, class: "bg-red-600 sm:px-9 px-5 py-2.5 text-sm font-medium text-white flex gap-2 items-center rounded-sm disabled:bg-gray-400 disabled:cursor-not-allowed", data: { turbo_confirm: "Are you sure to cancel order?"}
         - if can?(:shipping_details, order) && can?(:payment_method, order)
-          = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary px-9 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
+          = link_to "Resume Checkout", checkout_path(id: order.id), class: "text-primary sm:px-9 px-5 py-2.5 text-sm font-medium bg-primary/5 ring-1 ring-primary rounded-sm"
         - if can?(:sync, order)
-          = button_to sync_order_path(order), method: :post, class: "flex gap-2 items-center px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
+          = button_to sync_order_path(order), method: :post, class: "flex gap-2 items-center sm:px-9 px-5 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline", data: { turbo_confirm: "Are you sure to cancel order?"} do
             = icon("fa-solid", "arrows-rotate")
             Sync Order
         - if can?(:read, order)
-          = link_to "Order Details", order_path(order, from: params[:status]), class: "px-9 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline"
+          = link_to "Order Details", order_path(order, from: params[:status]), class: "sm:px-9 px-5 border border-gray-400 text-gray-800 text-sm rounded-sm py-2.5 hover:underline"

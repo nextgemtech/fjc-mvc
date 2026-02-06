@@ -5,24 +5,15 @@ default: &default
 
 test:
   <<: *default
-  database: <%= ENV["DB_TEST_NAME"] %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
-  port: <%= ENV["DB_PORT"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: fjc_test
 
 development:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
-  port: <%= ENV["DB_PORT"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: fjc_develop
 
 production:
   <<: *default
-  database: <%= ENV['DB_NAME'] %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
-  port: <%= ENV["DB_PORT"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: fjc_prod

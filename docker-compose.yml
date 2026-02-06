@@ -6,7 +6,7 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: fjc_db
+      POSTGRES_DB: fjc_develop
       POSTGRES_HOST_AUTH_METHOD: "trust"
       POSTGRES_USER: fjc
       DATABASE_PASSWORD: password

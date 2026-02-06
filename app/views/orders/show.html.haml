@@ -2,16 +2,19 @@
 
 = render Account::LayoutComponent.new do
   .divide-y.w-full
-    .flex.gap-4.justify-between.pb-4
-      = link_to orders_path(status: params[:from]), class: "text-gray-500" do
+    .flex.gap-4.sm:justify-between.pb-4.sm:flex-row.flex-col
+      = link_to orders_path(status: params[:from]), class: "text-gray-500 text-wrap" do
         = icon("fa-solid", "chevron-left", class: "text-sm")
         BACK
-      .divide-x.divide-gray-600.flex
-        .px-3
-          = "ORDER ID: #{@order.id}"
-        .text-primary.pl-3.uppercase
+      .sm:divide-x.divide-gray-600.flex.sm:flex-row.flex-col.gap-3
+        .block
+          = @order.id
+        .text-primary.sm:pl-3.uppercase
           = @order.order_status.name
-    .flex.justify-between.gap-3.py-4
+    .divide-y
+      - @order.order_items.each do |order_item|
+        = render "order_item", order_item:
+    .flex.flex-col.sm:gap-5.gap-4.py-4
       - if @order.shipping_detail.present?
         .space-y-1
           %h2.font-medium.text-lg.mb-2 Shipping Details

@@ -1,10 +1,10 @@
 %footer.bg-black
-  .margin-max-screen.w-full.py-10
+  .margin-max-screen.w-full.sm:py-10.py-5
     .md:flex.md:justify-between
       .mb-6.md:mb-0
         = link_to root_path, class: "text-xl text-white font-bold whitespace-nowrap" do
           = t("brand.shop")
-      .grid.grid-cols-2.gap-8.sm:gap-6.sm:grid-cols-3
+      .grid.sm:gap-6.gap-3.grid-cols-3
         %div
           %h2.mb-4.text-sm.font-semibold.text-white.uppercase
             = t("storefront.footer.navigate.title")
@@ -15,6 +15,11 @@
               = link_to t("storefront.footer.navigate.items.account"), account_path, class: "hover:underline hover:text-primary"
             %li
               = link_to t("storefront.footer.navigate.items.orders"), orders_path, class: "hover:underline hover:text-primary"
+            - unless user_signed_in?
+              %li
+                = link_to t("storefront.footer.navigate.items.sign_in"), user_session_path, class: "hover:underline hover:text-primary"
+              %li
+                = link_to t("storefront.footer.navigate.items.register"), new_user_registration_path, class: "hover:underline hover:text-primary"
         %div
           %h2.mb-4.text-sm.font-semibold.text-white.uppercase Follow us
           %ul.text-white.grid.gap-2.text-sm
@@ -29,7 +34,7 @@
               .hover:underline.hover:text-primary Privacy Policy
             %li
               .hover:underline.hover:text-primary Terms &amp; Conditions
-    .sm:flex.sm:items-center.sm:justify-between.mt-7
+    .flex.items-center.justify-between.mt-7
       %span.text-sm.text-white.sm:text-center
         = "© #{Date.current.year} Erxil Tech™"
       .flex.mt-4.sm:mt-0.gap-3

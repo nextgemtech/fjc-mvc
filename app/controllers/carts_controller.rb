@@ -5,9 +5,6 @@ class CartsController < BaseController
 
   def index
     @carts = Cart.detailed.accessible_by(current_ability)
-    return if params[:bn].blank?
-
-    @carts = @carts.sort_by { |cart| cart.id == params[:bn] ? 0 : 1 }
   end
 
   def update

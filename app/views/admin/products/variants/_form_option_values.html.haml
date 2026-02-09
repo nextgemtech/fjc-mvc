@@ -1,22 +1,28 @@
 .space-y-3.pb-4
   %h2.font-medium.text-lg Options
-  .grid.grid-cols-3.gap-3
+  .grid.lg:grid-cols-3.grid-cols-2.gap-3
     - if is_new
-      - @product.product_options.with_option_columns.each do |po|
-        = form.fields_for :variant_option_values, VariantOptionValue.new do |vov, pos|
+      - @product.product_options.sort_by_position.each do |po|
+        = form.fields_for :variant_option_values, VariantOptionValue.new do |vov|
           .field
-            = vov.label :name, po.name
-            = vov.text_field :name, placeholder: po.placeholder, required: true, list: po.name
-            %datalist{id: po.name}
-              - po.variant_option_values.grouped_names.each do |gn|
-                %option{value: gn.name}
-          = vov.hidden_field :product_option_id, value: po.id
+            .block
+              = po.option.name
+            = vov.hidden_field :product_option_value_id, value: vov.object.product_option_value_id
+            -# = vov.select :product_option_value_id, po.product_option_values.collect {|pov| [pov.name, pov.id]}, include_blank: "--Select #{po.option.name}--"
+            .block{class: "relative inline-block text-left", data: {controller: "admin--products--variants--options-dropdown"}}
+              %button.text-start.px-3.py-2.bg-white.w-full.border.border-gray-400.rounded-sm.text-gray-500{type: "button", data: {"admin--products--variants--options-dropdown-target": "placeholder", action: "admin--products--variants--options-dropdown#toggle click@window->admin--products--variants--options-dropdown#hide"}}
+                = vov.object.product_option_value&.name || "-- Select #{po.option.name} --"
+              .block{class: "shadow divide-y hidden transition transform origin-top-left absolute left-0 mt-0.5 w-full bg-white focus:outline-none border border-gray-400", data: {"admin--products--variants--options-dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
+                .block.overflow-auto{class: "max-h-[380px]"}
+                  - po.product_option_values.each do |pov|
+                    .cursor-pointer.px-3.py-2.hover:bg-gray-200{data: {action: "click->admin--products--variants--options-dropdown#toggle", povId: po.id}}
+                      = pov.name
+                .cursor-pointer.px-3.py-2.bg-gray-800
+                  %span.text-white
+                    = "+ Add #{po.option.name} option"
     - else
-      = form.fields_for :variant_option_values do |vov, pos|
-        .field
-          - po = vov.object.product_option.option
-          = vov.label :name, po.name
-          = vov.text_field :name, placeholder: po.placeholder, required: true, list: po.name
-          %datalist{id: po.name}
-            - vov.object.product_option.variant_option_values.grouped_names.each do |gn|
-              %option{value: gn.name}
+      - @product.product_options.sort_by_position.each do |po|
+        = form.fields_for :variant_option_values, @variant.variant_option_values.joins(:product_option_value).find_by(product_option_value: {product_option_id: po.id}) || VariantOptionValue.new do |vov|
+          .field
+            = vov.label :product_option_value_id, po.option.name
+            = vov.select :product_option_value_id, po.product_option_values.collect {|pov| [pov.name, pov.id]}, include_blank: "--Select #{po.option.name}--"

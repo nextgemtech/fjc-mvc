@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import intlTelInput from "intl-tel-input";
+import utilsScript from "intl-tel-input/build/js/utils.js?url";
 
 // Connects to data-controller="phone"
 export default class extends Controller {
@@ -9,7 +10,7 @@ export default class extends Controller {
     const COUNTRY = "PH";
 
     this.iti = intlTelInput(this.inputTarget, {
-      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+      utilsScript,
       separateDialCode: true,
       initialCountry: COUNTRY,
       allowDropdown: false,

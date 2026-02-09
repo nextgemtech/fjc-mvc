@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -160,6 +160,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
+  create_table "product_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_option_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "product_option_id"], name: "index_product_option_values_on_name_and_product_option_id", unique: true
+    t.index ["product_option_id"], name: "index_product_option_values_on_product_option_id"
+  end
+
   create_table "product_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id", null: false
     t.uuid "option_id", null: false
@@ -245,15 +254,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
   end
 
   create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name", null: false
     t.string "illustration", default: "", null: false
     t.uuid "variant_id", null: false
-    t.uuid "product_option_id", null: false
+    t.uuid "product_option_value_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_variant_option_values_on_name"
-    t.index ["product_option_id"], name: "index_variant_option_values_on_product_option_id"
-    t.index ["variant_id", "product_option_id"], name: "index_variant_option_values_on_variant_id_and_product_option_id", unique: true
+    t.index ["product_option_value_id"], name: "index_variant_option_values_on_product_option_value_id"
+    t.index ["variant_id", "product_option_value_id"], name: "idx_vov_unique_variant_id_and_product_option_value_id", unique: true
     t.index ["variant_id"], name: "index_variant_option_values_on_variant_id"
   end
 
@@ -287,10 +294,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_13_163653) do
   add_foreign_key "orders", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
+  add_foreign_key "product_option_values", "product_options"
   add_foreign_key "product_options", "options"
   add_foreign_key "product_options", "products"
   add_foreign_key "seos", "products"
-  add_foreign_key "variant_option_values", "product_options"
+  add_foreign_key "variant_option_values", "product_option_values"
   add_foreign_key "variant_option_values", "variants"
   add_foreign_key "variants", "products"
 end

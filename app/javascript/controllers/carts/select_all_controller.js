@@ -5,17 +5,33 @@ export default class extends CheckboxSelectAll {
   static targets = ["selected", "total", "bulkDeleteBtn", "selectAll", "activeCount", "checkoutBtn"];
 
   connect() {
+    super.connect();
     this.initTotalEl = this.totalTarget.innerHTML;
   }
 
   refresh() {
-    super.refresh();
+    const checkboxesCount = this.activeCheckbox.length;
+    const checkboxesCheckedCount = this.checked.length;
+
+    if (this.disableIndeterminateValue) {
+      this.checkboxAllTarget.checked = checkboxesCheckedCount === checkboxesCount;
+    } else {
+      this.checkboxAllTarget.checked = checkboxesCheckedCount > 0;
+      this.checkboxAllTarget.indeterminate = checkboxesCheckedCount > 0 && checkboxesCheckedCount < checkboxesCount;
+    }
+
     this.selectAllRefresh();
     this.displaySelected();
   }
 
   toggle(event) {
-    super.toggle(event);
+    event.preventDefault();
+
+    this.checkboxTargets.forEach((checkbox) => {
+      checkbox.checked = !checkbox.disabled && event.target.checked;
+      this.triggerInputEvent(checkbox);
+    });
+
     this.selectAllRefresh();
     this.displaySelected();
   }
@@ -73,7 +89,7 @@ export default class extends CheckboxSelectAll {
   }
 
   selectAllRefresh() {
-    this.activeCountTarget.innerHTML = `Select All (${this.activeCheckbox.length})`;
+    this.activeCountTarget.innerHTML = `Select All (${this.checked.length})`;
     this.selectAllTarget.checked = this.activeCheckbox.length == this.checked.length;
     this.bulkDeleteBtnTarget.disabled = !this.checked.length;
   }
@@ -85,5 +101,9 @@ export default class extends CheckboxSelectAll {
 
   get cartIDSParam() {
     return this.checked.map((el) => `ids[]=` + el.dataset.cartId).join("&");
+  }
+
+  get activeCheckbox() {
+    return this.checkboxTargets.filter((e) => !e.disabled);
   }
 }

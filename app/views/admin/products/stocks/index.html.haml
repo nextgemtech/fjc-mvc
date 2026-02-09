@@ -15,5 +15,6 @@
       %li
         = t("variants.table.thead.modify")
     %ul.form-table-body
-      - @variants.each do |variant|                   
-        = render "item", variant:
+      - if @variants.present?
+        - @variants.each do |variant|                   
+          = render "item", variant:

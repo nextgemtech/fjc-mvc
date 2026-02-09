@@ -8,8 +8,7 @@ class Admin::Products::StocksController < Admin::BaseController
 
   # GET /admin/product/:product_id/stocks
   def index
-    @variants = @product.variants.sort_by_position.grouped_option_name
-    @variants = @variants.master unless @product.has_variant
+    @variants = @product.variants.sort_by_position
   end
 
   # PATCH/PUT /admin/product/:product_id/stocks/:id

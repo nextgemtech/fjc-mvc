@@ -54,6 +54,8 @@ class Ability
     can :manage, :dashboard
     can :manage, :stock
 
+    can :manage, ProductOptionValue
+
     # Order
     can %i[read update_internal_note], Order
     can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil

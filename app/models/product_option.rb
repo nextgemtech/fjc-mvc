@@ -1,22 +1,23 @@
 # frozen_string_literal: true
 
 class ProductOption < ApplicationRecord
-  acts_as_list
+  acts_as_list scope: %i[product_id]
 
   # Relations
   belongs_to :product
   belongs_to :option
 
-  has_many :variant_option_values, dependent: :destroy
+  has_many :product_option_values, dependent: :destroy
 
   # Scopes
   scope :sort_by_position, -> { order(position: :asc) }
-  scope :with_option_columns,
-        -> { select('product_options.*, options.name, options.display_name, options.placeholder').joins(:option) }
+  scope :with_option_columns, lambda {
+    select('product_options.*, options.name, options.display_name, options.placeholder').joins(:option)
+  }
 
   # Generators
-  before_create :variant_cleanup
-  before_destroy :variant_cleanup, prepend: true
+  # before_create :variant_cleanup
+  # before_destroy :variant_cleanup, prepend: true
 
   private
 

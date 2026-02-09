@@ -6,7 +6,7 @@ class Admin::Products::VariantsController < Admin::BaseController
 
   # GET /admin/product/:product_id/variants
   def index
-    @variants = @product.variants.sort_by_position.grouped_option_name.accessible_by(current_ability)
+    @variants = @variants.sort_by_position.accessible_by(current_ability)
   end
 
   # GET /admin/product/:product_id/variants/:id
@@ -57,6 +57,10 @@ class Admin::Products::VariantsController < Admin::BaseController
     params.require(:variant)
           .permit(:name, :alternative_name, :cost, :price, :count_on_hand,
                   :position, :trackable, :backorderable, :sku, :product_id,
-                  variant_option_values_attributes: %i[id name variant_id product_option_id position])
+                  variant_option_values_attributes: %i[
+                    id
+                    variant_id
+                    product_option_value_id
+                  ])
   end
 end

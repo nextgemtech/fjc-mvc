@@ -6,7 +6,7 @@
       .mb-4
         = render ErrorMessageComponent.new(errors: @variant.errors.full_messages, label: "validation")
     = render "form_option_values", form: f, is_new:
-    .grid.grid-cols-3.gap-3.py-4
+    .grid.lg:grid-cols-3.grid-cols-2.gap-3.py-4
       .field
         = f.label :price do
           Price
@@ -19,7 +19,7 @@
         = f.text_field :cost, value: is_new ? @product.master_variant.cost : f.object.cost, placeholder: "0.00"
       = f.hidden_field :product_id
     .block.pt-3
-      .grid.grid-cols-3.gap-3
+      .grid.lg:grid-cols-3.grid-cols-2.gap-3
         .field
           = f.label :count_on_hand
           = f.number_field :count_on_hand, placeholder: "0"

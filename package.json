@@ -4,6 +4,32 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "rollup": "^4.57.1",
+    "stimulus-vite-helpers": "^3.1.0",
+    "vite": "^5.4.21",
+    "vite-plugin-rails": "^0.5.0",
+    "vite-plugin-ruby": "5.1.1",
+    "vite-plugin-stimulus-hmr": "^3.0.0"
+  },
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.23",
+    "@kurkle/color": "^0.4.0",
+    "@rails/actiontext": "^8.1.200",
+    "@rails/request.js": "^0.0.13",
+    "@stimulus-components/checkbox-select-all": "^6.1.0",
+    "@stimulus-components/dialog": "^1.0.1",
+    "@stimulus-components/dropdown": "^3.0.0",
+    "@stimulus-components/password-visibility": "^3.0.0",
+    "@stimulus-components/popover": "^7.0.0",
+    "@stimulus-components/sortable": "^5.0.3",
+    "chart.js": "^4.5.1",
+    "intl-tel-input": "18.2.1",
+    "slim-select": "2.8.2",
+    "sortablejs": "1.15.2",
+    "stimulus-notification": "^2.2.0",
+    "stimulus-rails-autosave": "^5.1.0",
+    "trix": "^2.1.16"
   }
 }

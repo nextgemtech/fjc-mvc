@@ -133,6 +133,7 @@ GEM
       dotenv (= 3.1.7)
       railties (>= 6.1)
     drb (2.2.1)
+    dry-cli (1.4.1)
     e2mmap (0.1.0)
     erubi (1.13.1)
     factory_bot (6.5.0)
@@ -173,10 +174,6 @@ GEM
     image_processing (1.13.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    importmap-rails (2.1.0)
-      actionpack (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.14.3)
       rdoc (>= 4.0.0)
@@ -219,6 +216,7 @@ GEM
     msgpack (1.7.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
+    mutex_m (0.3.0)
     net-http (0.6.0)
       uri
     net-imap (0.5.5)
@@ -293,6 +291,8 @@ GEM
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
       rack (>= 3.0.0, < 4)
+    rack-proxy (0.7.7)
+      rack
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -483,6 +483,15 @@ GEM
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
+    vite_rails (3.0.20)
+      railties (>= 5.1, < 9)
+      vite_ruby (~> 3.0, >= 3.2.2)
+    vite_ruby (3.9.2)
+      dry-cli (>= 0.7, < 2)
+      logger (~> 1.6)
+      mutex_m
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -534,7 +543,6 @@ DEPENDENCIES
   font-awesome-sass (~> 6.4.0)
   haml-rails (~> 2.1)
   image_processing (~> 1.2)
-  importmap-rails
   meta-tags (~> 2.20)
   money-rails (~> 1.15)
   omniauth-facebook (~> 9.0)
@@ -564,6 +572,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   view_component (~> 2.82)
+  vite_rails
   web-console
 
 RUBY VERSION

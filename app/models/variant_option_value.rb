@@ -3,51 +3,30 @@
 class VariantOptionValue < ApplicationRecord
   # Relations
   belongs_to :variant
-  belongs_to :product_option
+  belongs_to :product_option_value
 
-  # Attachments
-  has_one_attached :image do |attachable|
-    attachable.variant :small, resize_to_limit: [250, 250]
-  end
-
-  # Filter
-  normalizes :name, with: -> { _1.strip }
-
-  # Scopes
-  scope :grouped_names, -> { select('name').group(:name) }
-  scope :with_variant_position,
-        lambda {
-          select('variant_option_values.*')
-            .select('variants.position, variants.id as variant_id')
-            .joins(:variant)
-            .order('variants.position ASC')
-        }
-
-  # Validations
-  validates :name, presence: true
+  accepts_nested_attributes_for :product_option_value, update_only: true
 end
 
 # == Schema Information
 #
 # Table name: variant_option_values
 #
-#  id                :uuid             not null, primary key
-#  illustration      :string           default(""), not null
-#  name              :string           not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  product_option_id :uuid             not null
-#  variant_id        :uuid             not null
+#  id                      :uuid             not null, primary key
+#  illustration            :string           default(""), not null
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  product_option_value_id :uuid             not null
+#  variant_id              :uuid             not null
 #
 # Indexes
 #
-#  index_variant_option_values_on_name                              (name)
-#  index_variant_option_values_on_product_option_id                 (product_option_id)
-#  index_variant_option_values_on_variant_id                        (variant_id)
-#  index_variant_option_values_on_variant_id_and_product_option_id  (variant_id,product_option_id) UNIQUE
+#  idx_vov_unique_variant_id_and_product_option_value_id   (variant_id,product_option_value_id) UNIQUE
+#  index_variant_option_values_on_product_option_value_id  (product_option_value_id)
+#  index_variant_option_values_on_variant_id               (variant_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (product_option_id => product_options.id)
+#  fk_rails_...  (product_option_value_id => product_option_values.id)
 #  fk_rails_...  (variant_id => variants.id)
 #

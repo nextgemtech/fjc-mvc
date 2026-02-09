@@ -29,13 +29,13 @@
           .flex.gap-3.items-center
             = check_box_tag "select-all", "yes", false, id: "select-all", data: {"carts--select-all-target": "selectAll", action: "carts--select-all#selectAllToggle"}, class: "checkbox-primary"
             %label.cursor-pointer{for: "select-all", data: {"carts--select-all-target": "activeCount"}}
-              = "Select All (#{@carts.size})"
+              = "Select All (0)"
           %button.hover:text-red-600.disabled:text-gray-400.disabled:cursor-not-allowed{disabled: true, data: {action: "carts--select-all#bulkDelete", "carts--select-all-target": "bulkDeleteBtn"}}
             Delete
         .flex.gap-3.sm:items-center.sm:flex-row.flex-col
           .flex.items-center.gap-2
             .block{data: {"carts--select-all-target": "selected"}}
-              Total (0 item)
+              Total (0 item):
             #carts-total{data: {"carts--select-all-target": "total"}}
               = render PriceRangeComponent.new lowest: 0, currency: MoneyRails.default_currency.id.to_s
           %button.btn-primary.disabled:bg-gray-300.disabled:cursor-not-allowed.px-14{disabled: true, data: {"carts--select-all-target": "checkoutBtn", action: "carts--select-all#proceedCheckout"}}

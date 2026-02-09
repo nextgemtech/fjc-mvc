@@ -47,4 +47,10 @@ namespace :admin do
       resources :options, only: [:index]
     end
   end
+
+  resources :product_option_values, only: [] do
+    collection do
+      get :find_name
+    end
+  end
 end

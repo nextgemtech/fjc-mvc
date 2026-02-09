@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Variant < ApplicationRecord
-  acts_as_list scope: %i[product_id]
+  acts_as_list scope: %i[product_id is_master]
 
   # Relations
   belongs_to :product
@@ -34,7 +34,6 @@ class Variant < ApplicationRecord
 
   validate :only_one_master, if: :only_one_master_condition
   validate :product_supports_variant, unless: :is_master
-  validate :unique_option_values_per_variant
 
   # Generators
   before_destroy :capture_order_item_variants, prepend: true
@@ -44,6 +43,12 @@ class Variant < ApplicationRecord
 
   def option_value_name
     variant_option_values.joins(:product_option).order('product_options.position').pluck(:name).join(', ')
+  end
+
+  def find_vov_by_product_option(product_option_id)
+    variant_option_values
+      .joins(:product_option_value)
+      .find_by(product_option_value: { product_option_id: product_option_id })
   end
 
   private
@@ -87,23 +92,6 @@ class Variant < ApplicationRecord
     return if product.has_variant
 
     errors.add(:product, I18n.t('variants.validate.variant_not_supported'))
-  end
-
-  def unique_option_values_per_variant
-    existing_sets =
-      VariantOptionValue
-      .select(:variant_id, 'ARRAY_AGG(name ORDER BY product_option_id) AS option_values')
-      .where(product_option_id: product.product_options.pluck(:id))
-      .group(:variant_id)
-
-    existing_sets = existing_sets.where.not(variant: self) unless new_record?
-    existing_sets = existing_sets.map(&:option_values)
-
-    current_set = variant_option_values.sort_by(&:product_option_id).map(&:name)
-
-    return unless existing_sets.include?(current_set)
-
-    errors.add(:variant_option_values, I18n.t('variants.validate.variant_option_values_unique'))
   end
 end
 

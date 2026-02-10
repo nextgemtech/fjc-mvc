@@ -2,7 +2,7 @@
 
 class CreateProductOptionValues < ActiveRecord::Migration[7.2]
   def change
-    create_table :product_option_values, id: :uuid do |t|
+    create_table :product_option_values do |t|
       t.references :product_option, null: false, foreign_key: true, type: :uuid
       t.string :name, null: false
 

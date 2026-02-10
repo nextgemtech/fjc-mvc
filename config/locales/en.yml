@@ -93,12 +93,11 @@ en:
       master_delete_attempt: "cannot delete a master variant."
       variant_not_supported: "does not support variant."
       variant_out_of_stock: "out of stock."
-      variant_option_values_unique: "must be unique per variant"
+      combination_unique: "combination must be unique"
     table:
       thead:
         name: "Name"
-        option_values: "Option values"
-        alternative_name: "Alternative name"
+        option: "Option"
         price: "Price"
         cost: "Cost"
         sku: "SKU"

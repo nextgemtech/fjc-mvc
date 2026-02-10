@@ -4,7 +4,7 @@
       %span.font-medium.text-sm.text-zinc-500
         = po.display_name
       .flex-wrap.flex{class: "gap-2.5", data: {"products--public-target": "option"}}
-        - po.variant_option_values.with_variant_position.group_by { |h| h.name }.each do |key, arr|
+        - po.variant_option_values.group_by { |vov| vov.product_option_value.name }.each do |key, arr|
           .flex
             = radio_button_tag po.name, key, false, id: key, class: "peer hidden", disabled: true, data: {action: "click->products--public#radioToggle", was_checked: false, variant_ids: arr.map { |a| a.variant_id }.join(','), "products--public-target": "radio"}
             %label.variant-radio{for: key}

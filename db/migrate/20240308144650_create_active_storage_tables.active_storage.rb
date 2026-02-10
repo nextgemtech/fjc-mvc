@@ -26,7 +26,7 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
 
     create_table :active_storage_attachments, id: primary_key_type do |t|
       t.string     :name,     null: false
-      t.references :record,   null: false, polymorphic: true, type: foreign_key_type
+      t.references :record,   null: false, polymorphic: true, type: :string
       t.references :blob,     null: false, type: foreign_key_type
 
       if connection.supports_datetime_with_precision?
@@ -56,8 +56,8 @@ class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
   def primary_and_foreign_key_types
     config = Rails.configuration.generators
     setting = config.options[config.orm][:primary_key_type]
-    primary_key_type = setting || :uuid
-    foreign_key_type = setting || :uuid
+    primary_key_type = setting || :primary_key
+    foreign_key_type = setting || :bigint
     [primary_key_type, foreign_key_type]
   end
 end

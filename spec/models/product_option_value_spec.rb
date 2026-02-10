@@ -1,14 +1,16 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe ProductOptionValue, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# require 'rails_helper'
+#
+# RSpec.describe ProductOptionValue, type: :model do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end
 
 # == Schema Information
 #
 # Table name: product_option_values
 #
-#  id                :uuid             not null, primary key
+#  id                :bigint           not null, primary key
 #  name              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

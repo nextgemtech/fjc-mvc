@@ -7,6 +7,7 @@ class Variant < ApplicationRecord
   belongs_to :product
 
   has_many :variant_option_values, dependent: :destroy
+  has_many :product_option_values, through: :variant_option_values, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :order_items, dependent: :nullify
 
@@ -31,39 +32,44 @@ class Variant < ApplicationRecord
   validates :cost, numericality: { greater_than_or_equal_to: 0, only_float: true }, allow_nil: true
   validates :variant_option_values, presence: true, unless: :is_master
   validates :count_on_hand, presence: true
+  validates :option_value_signature, uniqueness: { scope: :product_id }
 
   validate :only_one_master, if: :only_one_master_condition
   validate :product_supports_variant, unless: :is_master
 
   # Generators
+  before_validation :set_option_value_signature, unless: :is_master
   before_destroy :capture_order_item_variants, prepend: true
 
   after_destroy :capture_price
   after_save :capture_price, if: :price_previously_changed?
 
-  def option_value_name
-    variant_option_values.joins(:product_option).order('product_options.position').pluck(:name).join(', ')
-  end
-
-  def find_vov_by_product_option(product_option_id)
-    variant_option_values
-      .joins(:product_option_value)
-      .find_by(product_option_value: { product_option_id: product_option_id })
+  def option_pair
+    Rails.cache.fetch("#{id}/#{option_value_signature}/option_pair", expires_in: 12.hours) do
+      product_option_values
+        .order('product_options.position asc')
+        .joins(:product_option)
+        .joins('INNER JOIN options ON options.id = product_options.option_id')
+        .pluck(Arel.sql("CONCAT_WS(': ', options.display_name, product_option_values.name)")).join(', ')
+    end
   end
 
   private
 
   # For generators
+  def set_option_value_signature
+    ids = variant_option_values.map(&:product_option_value_id).sort
+    self.option_value_signature = ids.join('_')
+  end
+
   def capture_order_item_variants
     order_items.each do |order_item|
       order_item.update(
         {
-          variant_capture: {
-            product_name: product.name,
-            product_id: product.id,
-            variant_name: option_value_name,
-            variant_master: is_master
-          }
+          capture_product_name: product.name,
+          capture_product_id: product.id,
+          capture_variant_pair: option_pair,
+          capture_variant_master: is_master
         }
       )
     end
@@ -99,24 +105,26 @@ end
 #
 # Table name: variants
 #
-#  id            :uuid             not null, primary key
-#  backorderable :boolean          default(FALSE), not null
-#  cost          :decimal(10, 2)
-#  count_on_hand :integer          default(0), not null
-#  is_master     :boolean          default(FALSE), not null
-#  position      :integer
-#  price         :decimal(10, 2)   not null
-#  sku           :string
-#  trackable     :boolean          default(TRUE), not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  product_id    :uuid             not null
+#  id                     :uuid             not null, primary key
+#  backorderable          :boolean          default(FALSE), not null
+#  cost                   :decimal(10, 2)
+#  count_on_hand          :integer          default(0), not null
+#  is_master              :boolean          default(FALSE), not null
+#  option_value_signature :string
+#  position               :integer
+#  price                  :decimal(10, 2)   not null
+#  sku                    :string
+#  trackable              :boolean          default(TRUE), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  product_id             :uuid             not null
 #
 # Indexes
 #
-#  index_variants_on_position    (position)
-#  index_variants_on_product_id  (product_id)
-#  index_variants_on_sku         (sku)
+#  index_variants_on_position                               (position)
+#  index_variants_on_product_id                             (product_id)
+#  index_variants_on_product_id_and_option_value_signature  (product_id,option_value_signature) UNIQUE
+#  index_variants_on_sku                                    (sku)
 #
 # Foreign Keys
 #

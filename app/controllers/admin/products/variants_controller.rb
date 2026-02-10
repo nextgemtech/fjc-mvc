@@ -4,18 +4,18 @@ class Admin::Products::VariantsController < Admin::BaseController
   load_and_authorize_resource :product
   load_and_authorize_resource through: :product
 
-  # GET /admin/product/:product_id/variants
+  # GET /admin/products/:product_id/variants
   def index
     @variants = @variants.sort_by_position.accessible_by(current_ability)
   end
 
-  # GET /admin/product/:product_id/variants/:id
+  # GET /admin/products/:product_id/variants/:id
   def show; end
 
-  # GET /admin/product/:product_id/variants/new
+  # GET /admin/products/:product_id/variants/new
   def new; end
 
-  # POST /admin/product/:product_id/variants/:id
+  # POST /admin/products/:product_id/variants
   def create
     @variant = Variant.new(variant_params)
 
@@ -26,7 +26,7 @@ class Admin::Products::VariantsController < Admin::BaseController
     end
   end
 
-  # PATCH/PUT /admin/product/:product_id/variants/:id
+  # PATCH/PUT /admin/products/:product_id/variants/:id
   def update
     respond_to do |format|
       if @variant.update(variant_params)
@@ -39,12 +39,12 @@ class Admin::Products::VariantsController < Admin::BaseController
     end
   end
 
-  # DELETE /admin/product/:product_id/variants/:id
+  # DELETE /admin/products/:product_id/variants/:id
   def destroy
     @variant.destroy
   end
 
-  # PATCH /admin/product/:product_id/variants/:id/position
+  # PATCH /admin/products/:product_id/variants/:id/position
   def position
     @variant.insert_at(variant_params[:position].to_i)
 

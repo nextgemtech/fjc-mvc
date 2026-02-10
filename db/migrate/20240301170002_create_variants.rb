@@ -12,11 +12,13 @@ class CreateVariants < ActiveRecord::Migration[7.0]
       t.boolean :is_master, null: false, default: false
       t.boolean :trackable, null: false, default: true
       t.boolean :backorderable, null: false, default: false
+      t.string :option_value_signature
 
       t.timestamps
     end
 
     add_index :variants, :position
     add_index :variants, :sku
+    add_index :variants, %i[product_id option_value_signature], unique: true
   end
 end

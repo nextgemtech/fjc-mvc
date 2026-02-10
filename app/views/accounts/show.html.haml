@@ -9,7 +9,7 @@
         %span
           - if current_user.name.present?
             = current_user.name
-          = "(#{current_user.phone_no.gsub(/\d(?=\d{3})/, '*') || current_user.email.gsub(/(?<=.{2}).(?=[^@]*?.{3}@)/, '*')})"
+          = "(#{current_user.phone_no.gsub(/\d(?=\d{2})/, '*') || current_user.email.gsub(/(?<=.{2}).(?=[^@]*?.{3}@)/, '*')})"
         %span
           = "Joined #{time_ago_in_words(current_user.created_at)} ago"
     - else

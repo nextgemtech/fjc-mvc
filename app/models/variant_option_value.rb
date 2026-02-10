@@ -5,7 +5,7 @@ class VariantOptionValue < ApplicationRecord
   belongs_to :variant
   belongs_to :product_option_value
 
-  accepts_nested_attributes_for :product_option_value, update_only: true
+  validates :variant_id, uniqueness: { scope: %i[product_option_value_id] }
 end
 
 # == Schema Information
@@ -13,10 +13,9 @@ end
 # Table name: variant_option_values
 #
 #  id                      :uuid             not null, primary key
-#  illustration            :string           default(""), not null
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
-#  product_option_value_id :uuid             not null
+#  product_option_value_id :bigint           not null
 #  variant_id              :uuid             not null
 #
 # Indexes

@@ -10,17 +10,17 @@ class ProductOptionValue < ApplicationRecord
     attachable.variant :small, resize_to_limit: [250, 250]
   end
 
-  normalizes :name, with: -> { _1.strip.humanize }
+  normalizes :name, with: -> { _1.strip }
 
   validates :name, presence: true
-  validates :name, uniqueness: { scope: %i[product_option_id] }
+  validates :name, uniqueness: { scope: %i[product_option_id], case_sensitive: false }
 end
 
 # == Schema Information
 #
 # Table name: product_option_values
 #
-#  id                :uuid             not null, primary key
+#  id                :bigint           not null, primary key
 #  name              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

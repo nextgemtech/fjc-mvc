@@ -25,11 +25,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.uuid "record_id", null: false
-    t.uuid "blob_id", null: false
+    t.string "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.integer "position"
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.index ["record_type", "record_id"], name: "index_active_storage_attachments_on_record_type_and_record_id"
   end
 
-  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -49,8 +49,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "blob_id", null: false
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -101,7 +101,10 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.decimal "price", precision: 10, scale: 2, null: false
     t.integer "qty", default: 1, null: false
     t.integer "discount_percent", default: 0, null: false
-    t.json "variant_capture"
+    t.string "capture_product_name"
+    t.string "capture_product_id"
+    t.string "capture_variant_pair"
+    t.boolean "capture_variant_master", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -160,7 +163,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
-  create_table "product_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "product_option_values", force: :cascade do |t|
     t.uuid "product_option_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -254,9 +257,8 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
   end
 
   create_table "variant_option_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "illustration", default: "", null: false
     t.uuid "variant_id", null: false
-    t.uuid "product_option_value_id", null: false
+    t.bigint "product_option_value_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_option_value_id"], name: "index_variant_option_values_on_product_option_value_id"
@@ -274,9 +276,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.boolean "is_master", default: false, null: false
     t.boolean "trackable", default: true, null: false
     t.boolean "backorderable", default: false, null: false
+    t.string "option_value_signature"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_variants_on_position"
+    t.index ["product_id", "option_value_signature"], name: "index_variants_on_product_id_and_option_value_signature", unique: true
     t.index ["product_id"], name: "index_variants_on_product_id"
     t.index ["sku"], name: "index_variants_on_sku"
   end

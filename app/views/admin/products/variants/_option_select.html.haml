@@ -1,0 +1,22 @@
+.field{data: {controller: "admin--products--variants--options-dropdown", create_product_option_value_url: admin_product_option_values_url(@product), po_id: product_option.id}}
+  .block
+    = product_option.option.name
+  .block{class: "relative inline-block text-left"}
+    = vov_form.hidden_field :product_option_value_id, value: vov_form.object.product_option_value_id, data: {"admin--products--variants--options-dropdown-target": "povField"}
+
+    %button.text-start.px-3.py-2.bg-white.w-full.border.border-gray-400.rounded-sm{class: vov_form.object.product_option_value.blank? ? "text-gray-500" : "", type: "button", data: {"admin--products--variants--options-dropdown-target": "placeholder", action: "admin--products--variants--options-dropdown#toggle click@window->admin--products--variants--options-dropdown#hide"}}
+      = vov_form.object.product_option_value&.name || "-- Select #{product_option.option.name} --"
+
+    .block{class: "shadow divide-y divide-gray-300 hidden transition transform origin-top-left absolute left-0 mt-1 w-full bg-white focus:outline-none border border-gray-400", data: {"admin--products--variants--options-dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
+      .block.overflow-auto{class: "max-h-[380px]", data: {"admin--products--variants--options-dropdown-target": "optionContainer"}}
+        - product_option.product_option_values.each do |pov|
+          = render "option_item", pov_id: pov.id, pov_name: pov.name
+
+      %template{data: {"admin--products--variants--options-dropdown-target": "optionTemplate"}}
+        = render "option_item", pov_id: "", pov_name: ""
+
+      .cursor-pointer.px-2.py-1.flex.gap-2.items-center
+        %input.py-0.h-7.border{type: "text", data: {action: "keypress->admin--products--variants--options-dropdown#addEvent", "admin--products--variants--options-dropdown-target": "optionInput"}}
+
+        %button.text-white.bg-gray-800.text-sm.px-2.rounded.text-wrap.w-32{type: :button, class: "py-1.5", data: {action: "click->admin--products--variants--options-dropdown#addEvent", "admin--products--variants--options-dropdown-target": "optionBtn"}}
+          = "+ Add"

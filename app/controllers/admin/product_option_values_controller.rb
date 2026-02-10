@@ -3,22 +3,20 @@
 class Admin::ProductOptionValuesController < Admin::BaseController
   load_and_authorize_resource
 
-  # GET /admin/product_option_values/find_name
-  def find_name
-    @product_option_values = @product_option_values
-                             .accessible_by(current_ability)
-                             .find_by(
-                               name: params[:name],
-                               product_option_id: params[:product_option_id]&.strip&.humanize
-                             )
+  # POST /admin/product_option_values
+  def create
+    @product_option_value = ProductOptionValue.new(product_option_value_params)
 
-    render json: @product_option_values
+    if @product_option_value.save
+      render json: @product_option_value, status: :ok
+    else
+      render json: @product_option_value.errors.full_messages, status: :unprocessable_entity
+    end
   end
 
-  # private
-  #
-  # def product_option_value_params
-  #   params.require(:product_option_value)
-  #         .permit(:name)
-  # end
+  private
+
+  def product_option_value_params
+    params.require(:product_option_value).permit(:name, :product_option_id)
+  end
 end

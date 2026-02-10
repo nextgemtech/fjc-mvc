@@ -10,11 +10,6 @@ class Cart < ApplicationRecord
   scope :detailed,
         lambda {
           select('carts.*')
-            # variant_option_values
-            .select("(SELECT STRING_AGG(vov.name, ', ' ORDER BY po.position) " \
-                    'FROM variant_option_values vov ' \
-                    'INNER JOIN product_options AS po ON po.id = vov.product_option_id ' \
-                    'WHERE carts.variant_id = vov.variant_id) AS variant_pair')
             # variants
             .select('variants.count_on_hand, variants.is_master, variants.price, ' \
                     'variants.trackable, variants.backorderable, variants.product_id')
@@ -45,6 +40,10 @@ class Cart < ApplicationRecord
   validates :user, presence: true, unless: :guest_session
 
   validate :validate_ownership
+
+  def variant_pair
+    variant.option_pair
+  end
 
   def self.checkout(carts, guest_session:, user:)
     Order.transaction do

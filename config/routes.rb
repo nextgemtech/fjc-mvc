@@ -90,6 +90,7 @@ end
 #                                          PATCH    /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          PUT      /admin/products/:id(.:format)                                                                     admin/products#update
 #                                          DELETE   /admin/products/:id(.:format)                                                                     admin/products#destroy
+#              admin_product_option_values POST     /admin/product_option_values(.:format)                                                            admin/product_option_values#create
 #                                     root GET      /                                                                                                 home#index
 #                                 products GET      /products(.:format)                                                                               products#index
 #                                  product GET      /products/:id(.:format)                                                                           products#show

@@ -33,4 +33,10 @@ export default class extends Controller {
         this.barangay.enable();
       });
   }
+
+  disconnect() {
+    this.province.destroy();
+    this.city.destroy();
+    this.barangay.destroy();
+  }
 }

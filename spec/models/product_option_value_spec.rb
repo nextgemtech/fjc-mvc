@@ -8,7 +8,7 @@ end
 #
 # Table name: product_option_values
 #
-#  id                :uuid             not null, primary key
+#  id                :bigint           not null, primary key
 #  name              :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null

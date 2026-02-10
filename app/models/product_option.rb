@@ -8,6 +8,7 @@ class ProductOption < ApplicationRecord
   belongs_to :option
 
   has_many :product_option_values, dependent: :destroy
+  has_many :variant_option_values, through: :product_option_values, dependent: :destroy
 
   # Scopes
   scope :sort_by_position, -> { order(position: :asc) }
@@ -16,8 +17,8 @@ class ProductOption < ApplicationRecord
   }
 
   # Generators
-  # before_create :variant_cleanup
-  # before_destroy :variant_cleanup, prepend: true
+  before_create :variant_cleanup
+  before_destroy :variant_cleanup, prepend: true
 
   private
 

@@ -1,19 +1,15 @@
 - variant_exist = order_item.variant.present?
-- product_id = (variant_exist ? order_item.variant.product.id : order_item.variant_capture["product_id"])
-- product_name = (variant_exist ? order_item.variant.product.name : order_item.variant_capture["product_name"])
-- is_master = (variant_exist ? order_item.variant.is_master : order_item.variant_capture["variant_master"])
-- option_value_name = (variant_exist ? order_item.variant.option_value_name : order_item.variant_capture["variant_name"])
 
-= link_to product_path(id: product_id), class: "flex gap-3 py-4 w-full" do
+= link_to product_path(id: variant_exist ? order_item.variant.product.id : order_item.capture_product_id), class: "flex gap-3 py-4 w-full" do
   = image_tag variant_exist && order_item.variant.product.thumbnail&.attached? ? order_item.variant.product.thumbnail.variant(:small) : "thumbnail.png", class: "rounded-sm object-cover object-center w-20 h-20 min-h-20 min-w-20 border", size: 100
   .flex.flex-col.w-full
     .block
-      = product_name
+      = variant_exist ? order_item.variant.product.name : order_item.capture_product_name
     .flex.justify-between.gap-3.text-sm.w-full
       .block
-        - unless is_master
+        - unless variant_exist ? order_item.variant.is_master : order_item.capture_variant_master
           .justify-between.gap-3.text-gray-500
-            = "Varation: #{option_value_name}"
+            = variant_exist ? order_item.variant.option_pair : order_item.capture_variant_pair
         %span
           = "x#{order_item.qty}"
       .block

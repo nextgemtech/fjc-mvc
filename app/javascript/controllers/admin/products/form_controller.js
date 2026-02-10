@@ -6,11 +6,15 @@ export default class extends Controller {
   static targets = ["optionInput", "optionContainer", "categoryInput", "thumbnail"];
 
   connect() {
-    const optionSettings = { hideSelected: true, closeOnSelect: false, maxSelected: 3 };
-    new SlimSelect({ select: this.optionInputTarget, settings: optionSettings });
+    this.optionInputSlim = new SlimSelect({
+      select: this.optionInputTarget,
+      settings: { hideSelected: true, closeOnSelect: false, maxSelected: 3 },
+    });
 
-    const categorySettings = { hideSelected: true, closeOnSelect: false };
-    new SlimSelect({ select: this.categoryInputTarget, settings: categorySettings });
+    this.categoryInputSlim = new SlimSelect({
+      select: this.categoryInputTarget,
+      settings: { hideSelected: true, closeOnSelect: false },
+    });
   }
 
   hasVariantToogle() {
@@ -26,5 +30,10 @@ export default class extends Controller {
     const reader = new FileReader();
     reader.onload = () => (imageEl.src = reader.result);
     reader.readAsDataURL(event.target.files[0]);
+  }
+
+  disconnect() {
+    this.optionInputSlim.destroy();
+    this.categoryInputSlim.destroy();
   }
 }

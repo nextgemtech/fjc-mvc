@@ -3,7 +3,7 @@
     .grid.grid-cols-4
       .flex.py-4.px-5
         .w-9= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
-        = variant.variant_option_values.map {|vov| vov.product_option_value.name }.join(", ")
+        = variant.option_pair
       .flex.gap-2.py-4.px-5
         = currency_symbol(@product.currency)
         = render "item_price", form: f

@@ -8,6 +8,10 @@ class OrderItem < ApplicationRecord
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }
   validates :qty, numericality: { greater_than: 0 }
+  validates :capture_product_currency, presence: true, unless: :variant
+  validates :capture_product_name, presence: true, unless: :variant
+  validates :capture_variant_master, presence: true, unless: :variant
+  validates :capture_variant_pair, presence: true, unless: :variant
 
   validate :check_variant_stock, if: :variant
 
@@ -31,18 +35,19 @@ end
 #
 # Table name: order_items
 #
-#  id                     :uuid             not null, primary key
-#  capture_product_name   :string
-#  capture_variant_master :boolean          default(FALSE), not null
-#  capture_variant_pair   :string
-#  discount_percent       :integer          default(0), not null
-#  price                  :decimal(10, 2)   not null
-#  qty                    :integer          default(1), not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  capture_product_id     :string
-#  order_id               :uuid
-#  variant_id             :uuid
+#  id                       :uuid             not null, primary key
+#  capture_product_currency :string
+#  capture_product_name     :string
+#  capture_variant_master   :boolean          default(FALSE), not null
+#  capture_variant_pair     :string
+#  discount_percent         :integer          default(0), not null
+#  price                    :decimal(10, 2)   not null
+#  qty                      :integer          default(1), not null
+#  created_at               :datetime         not null
+#  updated_at               :datetime         not null
+#  capture_product_id       :string
+#  order_id                 :uuid
+#  variant_id               :uuid
 #
 # Indexes
 #

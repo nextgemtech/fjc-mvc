@@ -1,7 +1,7 @@
 %li{id: dom_id(variant), data: {"sortable-update-url": position_admin_product_variant_path(@product, variant)}}
   = form_for(variant, url: admin_product_variant_path(@product, variant), data: {controller: "autosave admin--products--variants--item", delete_url: admin_product_variant_url(@product, variant)}) do |f|
     .grid.grid-cols-4
-      .flex.py-4.px-5
+      .flex.py-4.px-5.text-sm
         .w-9= icon("fa-solid", "grip", class: "handle cursor-move text-zinc-500 text-lg")
         = variant.option_pair
       .flex.gap-2.py-4.px-5

@@ -103,6 +103,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_08_070929) do
     t.integer "discount_percent", default: 0, null: false
     t.string "capture_product_name"
     t.string "capture_product_id"
+    t.string "capture_product_currency"
     t.string "capture_variant_pair"
     t.boolean "capture_variant_master", default: false, null: false
     t.datetime "created_at", null: false

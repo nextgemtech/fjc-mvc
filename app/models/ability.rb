@@ -54,8 +54,6 @@ class Ability
     can :manage, :dashboard
     can :manage, :stock
 
-    can :manage, ProductOptionValue
-
     # Order
     can %i[read update_internal_note], Order
     can :destroy, Order, order_status: { name: 'pending' }, placed_at: nil
@@ -70,9 +68,11 @@ class Ability
       order.order_status.name == 'pending' && order.placed_at.present?
     end
 
-    can :manage, Category
-    can :manage, Option
     can :manage, User
+    can :manage, Option
+    can :manage, Category
+    can :manage, ProductOptionValue
+    can :manage, VariantOptionValue
   end
 
   def guest_permission(guest_session)

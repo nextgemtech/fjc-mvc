@@ -57,12 +57,12 @@ export default class extends Dropdown {
       });
   }
 
-  appendPovOption(pov) {
+  appendPovOption(data) {
     const template = this.optionTemplateTarget.content.cloneNode(true);
     const element = template.firstElementChild;
 
-    element.dataset.povId = pov.id;
-    element.dataset.povName = pov.name;
+    element.dataset.povId = data.id;
+    element.dataset.povName = data.name;
 
     template.querySelector("[option-placeholder]").textContent = this.optionInputTarget.value;
 

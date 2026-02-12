@@ -1,5 +1,7 @@
 .field{data: {controller: "admin--products--variants--options-dropdown", create_product_option_value_url: admin_product_option_values_url(@product), po_id: product_option.id}}
   .block
+    - if product_option.option.display_name.present?
+      = "(#{product_option.option.display_name})"
     = product_option.option.name
   .block{class: "relative inline-block text-left"}
     = vov_form.hidden_field :product_option_value_id, value: vov_form.object.product_option_value_id, data: {"admin--products--variants--options-dropdown-target": "povField"}

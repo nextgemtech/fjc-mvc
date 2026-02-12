@@ -11,6 +11,7 @@ end
 # Table name: variant_option_values
 #
 #  id                      :uuid             not null, primary key
+#  position                :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  product_option_value_id :bigint           not null

@@ -118,6 +118,7 @@ end
 #                                    order GET      /orders/:id(.:format)                                                                             orders#show
 #                                                   /404(.:format)                                                                                    errors#not_found
 #                                                   /500(.:format)                                                                                    errors#internal_server_error
+#                                                   /*path(.:format)                                                                                  errors#not_found
 #         turbo_recede_historical_location GET      /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
 #         turbo_resume_historical_location GET      /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
 #        turbo_refresh_historical_location GET      /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh

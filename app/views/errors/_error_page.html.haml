@@ -1,0 +1,12 @@
+.margin-max-screen.py-7.grid.place-items-center.h-screen
+  .flex.flex-col.items-center.gap-4
+    .flex.flex-col.items-center
+      .text-red-500.font-bold.text-4xl
+        = code
+      .text-3xl.uppercase.font-bold
+        = message
+    .flex.gap-5
+      = link_to "Go to Home", root_path, class: "btn-primary text-lg"
+      - if current_user&.admin?
+        = link_to "Go to Admin", admin_path, class: "btn-primary-lite text-lg"
+

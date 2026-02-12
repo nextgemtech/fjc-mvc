@@ -13,13 +13,16 @@ class Admin::DashboardController < Admin::BaseController
       labels: %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday],
       datasets: [{
         label: 'Completed Orders',
+        borderColor: '#32CD32',
         backgroundColor: 'transparent',
-        borderColor: '#3B82F6',
         data: [37, 83, 78, 54, 12, 5, 1000]
       }]
     }
 
-    @chart_options = {}
+    @chart_options = {
+      responsive: true,
+      maintainAspectRatio: false
+    }
 
     @chart_config = {
       type: 'line',

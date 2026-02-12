@@ -50,11 +50,5 @@ authenticate :user, -> { _1.admin? } do
     end
 
     resources :product_option_values, only: [:create]
-
-    match "/404", to: "errors#not_found", via: :all
-    match "/500", to: "errors#internal_server_error", via: :all
-    match "*unmatch", to: "errors#not_found", via: :all, constraints: lambda { |req|
-      !req.path.starts_with?("/rails/active_storage")
-    }
   end
 end

@@ -3,10 +3,6 @@
 class Admin::BaseController < ApplicationController
   layout 'admin'
 
-  rescue_from ActiveRecord::RecordNotFound do
-    render 'admin/errors/not_found', status: :not_found
-  end
-
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :unauthorized }

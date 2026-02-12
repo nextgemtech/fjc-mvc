@@ -6,8 +6,7 @@
           .text-gray-500.sm:text-base
             Order placed
             %time{data: {"controller": "timeago", timeago: { "datetime-value": order.placed_at, "add-suffix-value": true, "refresh-interval-value": 60000}}} 
-              = time_ago_in_words(order.placed_at)
-              ago
+              = "#{time_ago_in_words(order.placed_at)} ago"
         - else
           .text-red-600
             Order not yet placed

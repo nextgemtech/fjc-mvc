@@ -16,11 +16,14 @@
     = render PriceRangeComponent.new lowest: order.total, currency: MoneyRails.default_currency.id.to_s
   %td
     - if order.placed_at.present? 
-      = "#{time_ago_in_words(order.placed_at)} ago"
+      %time{data: {"controller": "timeago", timeago: { "datetime-value": order.placed_at, "add-suffix-value": true, "refresh-interval-value": 60000}}} 
+        = "#{time_ago_in_words(order.placed_at)} ago"
     - else
       .text-red-600
         Not yet placed
-  %td= "#{time_ago_in_words(order.created_at)} ago"
+  %td
+    %time{data: {"controller": "timeago", timeago: { "datetime-value": order.created_at, "add-suffix-value": true, "refresh-interval-value": 60000}}} 
+      = "#{time_ago_in_words(order.created_at)} ago"
   %td
     .flex.gap-3.text-gray-400.items-center
       = link_to admin_order_path(order), class: "hover:text-primary transition-colors" do

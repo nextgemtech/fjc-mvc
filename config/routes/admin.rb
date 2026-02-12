@@ -1,52 +1,60 @@
 # frozen_string_literal: true
 
-namespace :admin do
-  get '/', to: redirect('/admin/dashboard')
-  resources :dashboard, only: [:index]
-  resources :users, only: %i[index]
-  resources :orders, only: %i[index show destroy] do
-    member do
-      post :ship
-      post :recieve
-      post :complete
-      post :return
-      post :refund
-      patch :update_shipping_details
-      patch :update_logistic_details
-      patch :update_return_reason
-      patch :update_refund_reason
-      patch :update_internal_note
-      delete :cancel
+authenticate :user, -> { _1.admin? } do
+  namespace :admin do
+    get '/', to: redirect('/admin/dashboard')
+    resources :dashboard, only: [:index]
+    resources :users, only: %i[index]
+    resources :orders, only: %i[index show destroy] do
+      member do
+        post :ship
+        post :recieve
+        post :complete
+        post :return
+        post :refund
+        patch :update_shipping_details
+        patch :update_logistic_details
+        patch :update_return_reason
+        patch :update_refund_reason
+        patch :update_internal_note
+        delete :cancel
+      end
     end
-  end
 
-  ## product routes
-  resources :products do
-    resources :variants, except: [:edit], module: :products do
-      member do
-        patch :position
+    ## product routes
+    resources :products do
+      resources :variants, except: [:edit], module: :products do
+        member do
+          patch :position
+        end
       end
-    end
-    resources :stocks, only: %i[index update], module: :products do
-      member do
-        put :modify
+      resources :stocks, only: %i[index update], module: :products do
+        member do
+          put :modify
+        end
       end
-    end
-    resources :images, except: %i[edit new], module: :products do
+      resources :images, except: %i[edit new], module: :products do
+        collection do
+          post :upload
+        end
+        member do
+          patch :position
+        end
+      end
       collection do
-        post :upload
+        resources :categories
       end
-      member do
-        patch :position
+      collection do
+        resources :options, only: [:index]
       end
     end
-    collection do
-      resources :categories
-    end
-    collection do
-      resources :options, only: [:index]
-    end
-  end
 
-  resources :product_option_values, only: [:create]
+    resources :product_option_values, only: [:create]
+
+    match "/404", to: "errors#not_found", via: :all
+    match "/500", to: "errors#internal_server_error", via: :all
+    match "*unmatch", to: "errors#not_found", via: :all, constraints: lambda { |req|
+      !req.path.starts_with?("/rails/active_storage")
+    }
+  end
 end

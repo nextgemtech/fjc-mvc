@@ -5,11 +5,11 @@
 
 .w-full.margin-max-screen.py-5{data: {controller: "products--public", pid: @product.id}}
   = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", data: {"products--public-target": "userSignedIn"}
-  .flex.gap-8.bg-white.pt-3.pb-9.rounded-sm{class: "px-3.5"}
+  .flex.sm:gap-8.gap-3.bg-white.sm:pt-3.sm:pb-9.pb-5.rounded-sm.md:flex-row.flex-col
     = render "image_carousel"
-    .flex.flex-col.w-full.gap-7
+    .flex.flex-col.w-full.sm:gap-7.gap-4
       .grid.gap-2
-        %h2.font-semibold.text-2xl
+        %h2.font-semibold.text-2xl.text-xl
           = @product.name
         -# = render "star_reviews" 
         #public-price{data: {"products--public-target": "price"}}

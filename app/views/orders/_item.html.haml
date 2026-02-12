@@ -3,8 +3,11 @@
     .flex.gap-3.justify-between.py-3
       .text-sm.uppercase
         - if order.placed_at.present?
-          .text-gray-500.sm:text-base.text-sm
-            = "Order placed #{time_ago_in_words(order.placed_at)} ago"
+          .text-gray-500.sm:text-base
+            Order placed
+            %time{data: {"controller": "timeago", timeago: { "datetime-value": order.placed_at, "add-suffix-value": true, "refresh-interval-value": 60000}}} 
+              = time_ago_in_words(order.placed_at)
+              ago
         - else
           .text-red-600
             Order not yet placed

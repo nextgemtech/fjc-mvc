@@ -5,5 +5,5 @@
     = number_field_tag 'cart[qty]', 1, class: "number-input", min: 1, data: {"products--public-target": "quantity", action: "input->products--public#quantityInput change->products--public#quantityChange keydown.enter->products--public#quantityOnEnter"}
     = button_tag type: :button, class: "increment", data: {action: "products--public#increment"} do
       = icon("fa-solid", "plus")
-  #stocks{class: hide ? "hidden" : "", data: {"products--public-target": "stocks"}}
+  #stocks{class: class_names(hidden: hide), data: {"products--public-target": "stocks"}}
     = render StockCountComponent.new count: variant.count_on_hand, sale: sale?(variant)

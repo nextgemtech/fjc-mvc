@@ -21,14 +21,16 @@
     "@stimulus-components/checkbox-select-all": "^6.1.0",
     "@stimulus-components/dialog": "^1.0.1",
     "@stimulus-components/dropdown": "^3.0.0",
+    "@stimulus-components/notification": "^3.0.0",
     "@stimulus-components/password-visibility": "^3.0.0",
     "@stimulus-components/popover": "^7.0.0",
     "@stimulus-components/sortable": "^5.0.3",
+    "@stimulus-components/timeago": "^5.0.2",
     "chart.js": "^4.5.1",
     "intl-tel-input": "18.2.1",
+    "js-image-zoom": "^0.7.0",
     "slim-select": "2.8.2",
     "sortablejs": "1.15.2",
-    "stimulus-notification": "^2.2.0",
     "stimulus-rails-autosave": "^5.1.0",
     "trix": "^2.1.16"
   }

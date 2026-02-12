@@ -10,7 +10,7 @@
         .block
           = @order.id
         .text-primary.sm:pl-3.uppercase
-          = @order.order_status.name
+          = @order.order_status.name.humanize
     .divide-y
       - @order.order_items.each do |order_item|
         = render "order_item", order_item:

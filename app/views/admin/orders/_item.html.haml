@@ -7,11 +7,11 @@
       - elsif order.guest_session_id.blank? && order.user_id.blank?
         .tag-primary
           custom
-      - if order.customer_name.present?
-        = order.customer_name
+      - if order.shipping_detail.present?
+        = order.shipping_detail.fullname
   %td
-    .lowercase{class: "#{order.status}-status"}
-      = order.status.humanize
+    .lowercase{class: "#{order.order_status.name}-status"}
+      = order.order_status.name.humanize
   %td
     = render PriceRangeComponent.new lowest: order.total, currency: MoneyRails.default_currency.id.to_s
   %td

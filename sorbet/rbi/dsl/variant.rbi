@@ -375,6 +375,20 @@ class Variant
     sig { returns(T::Boolean) }
     def product_changed?; end
 
+    sig { returns(T::Array[T.untyped]) }
+    def product_option_value_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def product_option_value_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `Variant` class because it declared `has_many :product_option_values, through: :variant_option_values`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+    sig { returns(::ProductOptionValue::PrivateCollectionProxy) }
+    def product_option_values; end
+
+    sig { params(value: T::Enumerable[::ProductOptionValue]).void }
+    def product_option_values=(value); end
+
     sig { returns(T::Boolean) }
     def product_previously_changed?; end
 
@@ -881,6 +895,51 @@ class Variant
     sig { void }
     def is_master_will_change!; end
 
+    sig { returns(T.nilable(::String)) }
+    def option_value_signature; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def option_value_signature=(value); end
+
+    sig { returns(T::Boolean) }
+    def option_value_signature?; end
+
+    sig { returns(T.nilable(::String)) }
+    def option_value_signature_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def option_value_signature_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def option_value_signature_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def option_value_signature_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def option_value_signature_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def option_value_signature_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def option_value_signature_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def option_value_signature_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def option_value_signature_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def option_value_signature_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def option_value_signature_was; end
+
+    sig { void }
+    def option_value_signature_will_change!; end
+
     sig { returns(T.nilable(::Integer)) }
     def position; end
 
@@ -1038,6 +1097,9 @@ class Variant
     def restore_is_master!; end
 
     sig { void }
+    def restore_option_value_signature!; end
+
+    sig { void }
     def restore_position!; end
 
     sig { void }
@@ -1096,6 +1158,12 @@ class Variant
 
     sig { returns(T::Boolean) }
     def saved_change_to_is_master?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_option_value_signature; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_option_value_signature?; end
 
     sig { returns(T.nilable([T.nilable(::Integer), T.nilable(::Integer)])) }
     def saved_change_to_position; end
@@ -1288,6 +1356,9 @@ class Variant
 
     sig { returns(T::Boolean) }
     def will_save_change_to_is_master?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_option_value_signature?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_position?; end

@@ -423,6 +423,20 @@ class ProductOption
     sig { returns(T::Boolean) }
     def product_changed?; end
 
+    sig { returns(T::Array[T.untyped]) }
+    def product_option_value_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def product_option_value_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `ProductOption` class because it declared `has_many :product_option_values`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::ProductOptionValue::PrivateCollectionProxy) }
+    def product_option_values; end
+
+    sig { params(value: T::Enumerable[::ProductOptionValue]).void }
+    def product_option_values=(value); end
+
     sig { returns(T::Boolean) }
     def product_previously_changed?; end
 
@@ -444,8 +458,8 @@ class ProductOption
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
     def variant_option_value_ids=(ids); end
 
-    # This method is created by ActiveRecord on the `ProductOption` class because it declared `has_many :variant_option_values`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    # This method is created by ActiveRecord on the `ProductOption` class because it declared `has_many :variant_option_values, through: :product_option_values`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
     sig { returns(::VariantOptionValue::PrivateCollectionProxy) }
     def variant_option_values; end
 

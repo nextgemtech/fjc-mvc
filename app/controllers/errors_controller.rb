@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ErrorsController < BaseController
+  layout 'error'
+
   def not_found
     render status: :not_found
   end

@@ -1,5 +1,2 @@
 .relative
   = render Carts::Item::VariantButtonComponent.new cart: @cart, variant_pair: @cart.variant_pair, count_on_hand: @cart.count_on_hand, sale: @sale
-  -# .point.bg-white.z-10.mt-4.hidden.transition.transform.origin-top-left.absolute.bg-white.rounded-sm.border.shadow-md.shadow-gray-200.px-4.py-3{class: "w-[21rem] max-w-[21rem] left-10 before:left-1/2 -translate-x-1/2", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
-  -#   = tag.turbo_frame id: "variant-#{@cart.id}-dropdown", src: variant_dropdown_cart_path(@cart), loading: "lazy" do
-  -#     = icon "fa-solid", "spinner", class: "text-3xl animate-spin"

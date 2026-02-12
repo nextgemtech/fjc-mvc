@@ -13,6 +13,7 @@ class CreateOrderItems < ActiveRecord::Migration[7.0]
 
       t.string :capture_product_name
       t.string :capture_product_id
+      t.string :capture_product_currency
       t.string :capture_variant_pair
       t.boolean :capture_variant_master, null: false, default: false
 

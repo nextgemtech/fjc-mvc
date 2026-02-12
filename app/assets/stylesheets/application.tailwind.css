@@ -4,7 +4,7 @@
 
 @layer base {
   .margin-max-screen {
-    @apply mx-auto max-w-margin px-4 md:px-8 w-full;
+    @apply mx-auto max-w-margin px-3 md:px-4 lg:px-8 w-full;
   }
 
   select option[value=""],
@@ -154,7 +154,7 @@
 
   /* Public Product */
   #public-price {
-    @apply text-3xl text-primary font-medium;
+    @apply sm:text-3xl text-2xl text-primary font-medium;
   }
 
   #public-price #price #discounted {

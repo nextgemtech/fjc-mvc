@@ -1,4 +1,4 @@
-.w-full.border-b.flex.items-center.min-h-20.h-20.bg-white.sticky.top-0.z-10
+.w-full.border-b.flex.items-center.sm:min-h-20.sm:h-20.sm:py-0.py-6.pb-4.bg-white.sticky.top-0.z-10
   .margin-max-screen.w-full.flex.justify-between.items-center
     .flex.gap-3.items-center
       = link_to t("brand.shop"), root_path, class: "text-2xl font-extrabold"
@@ -16,8 +16,8 @@
         %button{type: "button", data: {action: "dropdown#toggle click@window->dropdown#hide"}}
           = icon("fa-regular", "user", class: "text-xl")
         .point.z-10.mt-3.hidden.transition.transform.origin-top-right.absolute.-right-2.bg-white.rounded-sm.border.shadow-lg.shadow-gray-200.w-40{class: "-right-3.5 before:right-3", data: {"dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}
-          = link_to t("storefront.header.user_icon.dropdown.account"), account_path, class: "py-1.5 hover:bg-primary/5 hover:text-primary px-6 w-full text-nowrap flex"
           = link_to t("storefront.header.user_icon.dropdown.orders"), orders_path, class: "py-1.5 hover:bg-primary/5 hover:text-primary px-6 w-full text-nowrap flex"
+          = link_to t("storefront.header.user_icon.dropdown.account"), account_path, class: "py-1.5 hover:bg-primary/5 hover:text-primary px-6 w-full text-nowrap flex"
           - if user_signed_in?
             = button_to t("storefront.header.user_icon.dropdown.logout"), destroy_user_session_path, method: :delete, class: "py-1.5 hover:bg-primary/5 hover:text-primary px-6 w-full text-nowrap text-start"
       - if current_user&.admin?

@@ -1,60 +1,65 @@
-FROM ruby:3.3.0
+# syntax = docker/dockerfile:1
 
-RUN apt-get update -qq && apt-get install -y \
-  build-essential \
-  libpq-dev \
-  curl \
-  gnupg2 \
-  libvips \
-  poppler-utils \
-  postgresql-client \
-  iputils-ping
+# This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
+# docker build -t my-app .
+# docker run -d -p 80:80 -p 443:443 --name my-app -e RAILS_MASTER_KEY=<value from config/master.key> my-app
 
-# Set working directory
-WORKDIR /app
+# Make sure RUBY_VERSION matches the Ruby version in .ruby-version
+ARG RUBY_VERSION=3.3.0
+FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
-ARG SECRET_KEY_BASE
+# Rails app lives here
+WORKDIR /rails
 
-# Rails ENV
-ENV RAILS_ENV production
-ENV RAILS_SERVE_STATIC_FILES true
-ENV RAILS_LOG_TO_STDOUT true
-ENV BUNDLER_WITHOUT 'development test'
+# Install base packages
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Copy the rest of the application code
-COPY Gemfile Gemfile.lock   ./
-COPY .ruby-version          .ruby-version
-COPY config.ru              config.ru
-COPY Rakefile               Rakefile
-COPY bin                    bin/
-COPY config                 config/
-COPY db                     db/
-COPY lib                    lib/
-COPY app                    app/
-COPY public                 public/
-COPY vendor                 vendor/
-COPY sorbet                 sorbet/
-COPY Procfile.prod          Procfile.prod
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_WITHOUT="development"
 
-# Install Bundler
-RUN gem install bundler -v 2.5.10
+# Throw-away build stage to reduce size of final image
+FROM base AS build
 
-# Install gems
-RUN bundle install
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev pkg-config && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Precompile Assets
-RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} bin/rake assets:precompile --trace
+# Install application gems
+COPY Gemfile Gemfile.lock ./
+RUN bundle install && \
+    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
+    bundle exec bootsnap precompile --gemfile
 
-# Install Foreman
-RUN gem install foreman
+# Copy application code
+COPY . .
 
-# Copy Entrypoint
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
+# Precompile bootsnap code for faster boot times
+RUN bundle exec bootsnap precompile app/ lib/
 
-# Expose port 3000
+
+
+# Final stage for app image
+FROM base
+
+# Copy built artifacts: gems, application
+COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
+COPY --from=build /rails /rails
+
+# Run and own only the runtime files as a non-root user for security
+RUN groupadd --system --gid 1000 rails && \
+    useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
+    chown -R rails:rails db log storage tmp
+USER 1000:1000
+
+# Entrypoint prepares the database.
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-
-# Start the Rails server
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD ["foreman", "start", "-f", "Procfile.prod"]
+CMD ["./bin/rails", "server"]

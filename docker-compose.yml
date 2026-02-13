@@ -1,8 +1,8 @@
-name: fjc_mvc
+name: fjc-mvc
 services:
   db:
     image: "postgres:17.2-bookworm"
-    container_name: fjc_db
+    container_name: fjc-db
     ports:
       - "5432:5432"
     environment:

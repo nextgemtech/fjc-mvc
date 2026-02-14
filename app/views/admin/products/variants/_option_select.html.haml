@@ -5,8 +5,9 @@
     = product_option.option.name
   .block{class: "relative inline-block text-left"}
     = vov_form.hidden_field :product_option_value_id, value: vov_form.object.product_option_value_id, data: {"admin--products--variants--options-dropdown-target": "povField"}
+    = icon "fa-solid", "chevron-down", class: "text-sm text-gray-500 absolute top-3.5 right-3"
 
-    %button.text-start.px-3.py-2.bg-white.w-full.border.border-gray-400.rounded-sm{class: vov_form.object.product_option_value.blank? ? "text-gray-500" : "", type: "button", data: {"admin--products--variants--options-dropdown-target": "placeholder", action: "admin--products--variants--options-dropdown#toggle click@window->admin--products--variants--options-dropdown#hide"}}
+    %button.text-start.px-3.py-2.bg-white.w-full.border.border-gray-400.rounded-sm{class: class_names("text-gray-500": vov_form.object.product_option_value.blank?), type: "button", data: {"admin--products--variants--options-dropdown-target": "placeholder", action: "admin--products--variants--options-dropdown#toggle click@window->admin--products--variants--options-dropdown#hide"}}
       = vov_form.object.product_option_value&.name || "-- Select #{product_option.option.name} --"
 
     .block{class: "shadow divide-y divide-gray-300 hidden transition transform origin-top-left absolute left-0 mt-1 w-full bg-white focus:outline-none border border-gray-400", data: {"admin--products--variants--options-dropdown-target": "menu", "transition-enter-from": "opacity-0 scale-95", "transition-enter-to": "opacity-100 scale-100", "transition-leave-from": "opacity-100 scale-100", "transition-leave-to": "opacity-0 scale-95"}}

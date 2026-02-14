@@ -580,6 +580,231 @@ class OrderItem
   end
 
   module GeneratedAttributeMethods
+    sig { returns(T.nilable(::String)) }
+    def capture_product_currency; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def capture_product_currency=(value); end
+
+    sig { returns(T::Boolean) }
+    def capture_product_currency?; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_currency_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def capture_product_currency_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def capture_product_currency_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_currency_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_currency_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_currency_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_currency_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_currency_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_currency_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_currency_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_currency_was; end
+
+    sig { void }
+    def capture_product_currency_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_id; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def capture_product_id=(value); end
+
+    sig { returns(T::Boolean) }
+    def capture_product_id?; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_id_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def capture_product_id_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def capture_product_id_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_id_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_id_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_id_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_id_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_id_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_id_was; end
+
+    sig { void }
+    def capture_product_id_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_name; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def capture_product_name=(value); end
+
+    sig { returns(T::Boolean) }
+    def capture_product_name?; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_name_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def capture_product_name_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def capture_product_name_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_name_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_name_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_name_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_name_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_product_name_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_product_name_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_name_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_product_name_was; end
+
+    sig { void }
+    def capture_product_name_will_change!; end
+
+    sig { returns(T::Boolean) }
+    def capture_variant_master; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def capture_variant_master=(value); end
+
+    sig { returns(T::Boolean) }
+    def capture_variant_master?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def capture_variant_master_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def capture_variant_master_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def capture_variant_master_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def capture_variant_master_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def capture_variant_master_change_to_be_saved; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def capture_variant_master_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def capture_variant_master_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def capture_variant_master_previous_change; end
+
+    sig { params(from: T::Boolean, to: T::Boolean).returns(T::Boolean) }
+    def capture_variant_master_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def capture_variant_master_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def capture_variant_master_was; end
+
+    sig { void }
+    def capture_variant_master_will_change!; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_variant_pair; end
+
+    sig { params(value: T.nilable(::String)).returns(T.nilable(::String)) }
+    def capture_variant_pair=(value); end
+
+    sig { returns(T::Boolean) }
+    def capture_variant_pair?; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_variant_pair_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def capture_variant_pair_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def capture_variant_pair_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_variant_pair_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_variant_pair_change_to_be_saved; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_variant_pair_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_variant_pair_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def capture_variant_pair_previous_change; end
+
+    sig { params(from: T.nilable(::String), to: T.nilable(::String)).returns(T::Boolean) }
+    def capture_variant_pair_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_variant_pair_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def capture_variant_pair_was; end
+
+    sig { void }
+    def capture_variant_pair_will_change!; end
+
     sig { returns(::ActiveSupport::TimeWithZone) }
     def created_at; end
 
@@ -896,6 +1121,21 @@ class OrderItem
     def qty_will_change!; end
 
     sig { void }
+    def restore_capture_product_currency!; end
+
+    sig { void }
+    def restore_capture_product_id!; end
+
+    sig { void }
+    def restore_capture_product_name!; end
+
+    sig { void }
+    def restore_capture_variant_master!; end
+
+    sig { void }
+    def restore_capture_variant_pair!; end
+
+    sig { void }
     def restore_created_at!; end
 
     sig { void }
@@ -920,10 +1160,37 @@ class OrderItem
     def restore_updated_at!; end
 
     sig { void }
-    def restore_variant_capture!; end
-
-    sig { void }
     def restore_variant_id!; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_capture_product_currency; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_capture_product_currency?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_capture_product_id; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_capture_product_id?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_capture_product_name; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_capture_product_name?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_capture_variant_master; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_capture_variant_master?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_capture_variant_pair; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_capture_variant_pair?; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_created_at; end
@@ -972,12 +1239,6 @@ class OrderItem
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
-
-    sig { returns(T.nilable([T.untyped, T.untyped])) }
-    def saved_change_to_variant_capture; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_variant_capture?; end
 
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_variant_id; end
@@ -1030,51 +1291,6 @@ class OrderItem
     sig { void }
     def updated_at_will_change!; end
 
-    sig { returns(T.untyped) }
-    def variant_capture; end
-
-    sig { params(value: T.untyped).returns(T.untyped) }
-    def variant_capture=(value); end
-
-    sig { returns(T::Boolean) }
-    def variant_capture?; end
-
-    sig { returns(T.untyped) }
-    def variant_capture_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def variant_capture_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def variant_capture_came_from_user?; end
-
-    sig { returns(T.nilable([T.untyped, T.untyped])) }
-    def variant_capture_change; end
-
-    sig { returns(T.nilable([T.untyped, T.untyped])) }
-    def variant_capture_change_to_be_saved; end
-
-    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
-    def variant_capture_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.untyped) }
-    def variant_capture_in_database; end
-
-    sig { returns(T.nilable([T.untyped, T.untyped])) }
-    def variant_capture_previous_change; end
-
-    sig { params(from: T.untyped, to: T.untyped).returns(T::Boolean) }
-    def variant_capture_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.untyped) }
-    def variant_capture_previously_was; end
-
-    sig { returns(T.untyped) }
-    def variant_capture_was; end
-
-    sig { void }
-    def variant_capture_will_change!; end
-
     sig { returns(T.nilable(::String)) }
     def variant_id; end
 
@@ -1121,6 +1337,21 @@ class OrderItem
     def variant_id_will_change!; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_capture_product_currency?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_capture_product_id?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_capture_product_name?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_capture_variant_master?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_capture_variant_pair?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_created_at?; end
 
     sig { returns(T::Boolean) }
@@ -1143,9 +1374,6 @@ class OrderItem
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_variant_capture?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_variant_id?; end

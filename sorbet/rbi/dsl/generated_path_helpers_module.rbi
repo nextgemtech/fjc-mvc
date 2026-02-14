@@ -43,6 +43,9 @@ module GeneratedPathHelpersModule
   def admin_product_images_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def admin_product_option_values_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def admin_product_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

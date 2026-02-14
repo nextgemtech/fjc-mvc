@@ -20,7 +20,7 @@ class DeviseController
     include ::Turbo::Streams::ActionHelper
     include ::ActionText::ContentHelper
     include ::ActionText::TagHelper
-    include ::Importmap::ImportmapTagsHelper
+    include ::ViteRails::TagHelpers
     include ::ActionController::Base::HelperMethods
     include ::Pagy::UrlHelpers
     include ::Pagy::Frontend

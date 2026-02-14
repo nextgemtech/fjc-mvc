@@ -11,12 +11,6 @@ class VariantOptionValue
   extend CommonRelationMethods
   extend GeneratedRelationMethods
 
-  sig { returns(ActiveStorage::Attached::One) }
-  def image; end
-
-  sig { params(attachable: T.untyped).returns(T.untyped) }
-  def image=(attachable); end
-
   private
 
   sig { returns(NilClass) }
@@ -406,35 +400,17 @@ class VariantOptionValue
   end
 
   module GeneratedAssociationMethods
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
-    def build_image_attachment(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
-    def build_image_blob(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOption) }
-    def build_product_option(*args, &blk); end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOptionValue) }
+    def build_product_option_value(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def build_variant(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
-    def create_image_attachment(*args, &blk); end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOptionValue) }
+    def create_product_option_value(*args, &blk); end
 
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Attachment) }
-    def create_image_attachment!(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
-    def create_image_blob(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ActiveStorage::Blob) }
-    def create_image_blob!(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOption) }
-    def create_product_option(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOption) }
-    def create_product_option!(*args, &blk); end
+    sig { params(args: T.untyped, blk: T.untyped).returns(::ProductOptionValue) }
+    def create_product_option_value!(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_variant(*args, &blk); end
@@ -442,50 +418,26 @@ class VariantOptionValue
     sig { params(args: T.untyped, blk: T.untyped).returns(::Variant) }
     def create_variant!(*args, &blk); end
 
-    sig { returns(T.nilable(::ActiveStorage::Attachment)) }
-    def image_attachment; end
+    sig { returns(T.nilable(::ProductOptionValue)) }
+    def product_option_value; end
 
-    sig { params(value: T.nilable(::ActiveStorage::Attachment)).void }
-    def image_attachment=(value); end
-
-    sig { returns(T.nilable(::ActiveStorage::Blob)) }
-    def image_blob; end
-
-    sig { params(value: T.nilable(::ActiveStorage::Blob)).void }
-    def image_blob=(value); end
-
-    sig { returns(T.nilable(::ProductOption)) }
-    def product_option; end
-
-    sig { params(value: T.nilable(::ProductOption)).void }
-    def product_option=(value); end
+    sig { params(value: T.nilable(::ProductOptionValue)).void }
+    def product_option_value=(value); end
 
     sig { returns(T::Boolean) }
-    def product_option_changed?; end
+    def product_option_value_changed?; end
 
     sig { returns(T::Boolean) }
-    def product_option_previously_changed?; end
+    def product_option_value_previously_changed?; end
 
-    sig { returns(T.nilable(::ActiveStorage::Attachment)) }
-    def reload_image_attachment; end
-
-    sig { returns(T.nilable(::ActiveStorage::Blob)) }
-    def reload_image_blob; end
-
-    sig { returns(T.nilable(::ProductOption)) }
-    def reload_product_option; end
+    sig { returns(T.nilable(::ProductOptionValue)) }
+    def reload_product_option_value; end
 
     sig { returns(T.nilable(::Variant)) }
     def reload_variant; end
 
     sig { void }
-    def reset_image_attachment; end
-
-    sig { void }
-    def reset_image_blob; end
-
-    sig { void }
-    def reset_product_option; end
+    def reset_product_option_value; end
 
     sig { void }
     def reset_variant; end
@@ -542,9 +494,6 @@ class VariantOptionValue
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelationGroupChain) }
     def group(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
-    def grouped_names(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def having(*args, &blk); end
@@ -649,13 +598,7 @@ class VariantOptionValue
     def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
-    def with_attached_image(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def with_recursive(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
-    def with_variant_position(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def without(*args, &blk); end
@@ -797,140 +740,50 @@ class VariantOptionValue
     sig { void }
     def id_will_change!; end
 
-    sig { returns(::String) }
-    def illustration; end
+    sig { returns(::Integer) }
+    def product_option_value_id; end
 
-    sig { params(value: ::String).returns(::String) }
-    def illustration=(value); end
+    sig { params(value: ::Integer).returns(::Integer) }
+    def product_option_value_id=(value); end
 
     sig { returns(T::Boolean) }
-    def illustration?; end
+    def product_option_value_id?; end
 
-    sig { returns(T.nilable(::String)) }
-    def illustration_before_last_save; end
+    sig { returns(T.nilable(::Integer)) }
+    def product_option_value_id_before_last_save; end
 
     sig { returns(T.untyped) }
-    def illustration_before_type_cast; end
+    def product_option_value_id_before_type_cast; end
 
     sig { returns(T::Boolean) }
-    def illustration_came_from_user?; end
+    def product_option_value_id_came_from_user?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def illustration_change; end
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def product_option_value_id_change; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def illustration_change_to_be_saved; end
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def product_option_value_id_change_to_be_saved; end
 
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def illustration_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def product_option_value_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::String)) }
-    def illustration_in_database; end
+    sig { returns(T.nilable(::Integer)) }
+    def product_option_value_id_in_database; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def illustration_previous_change; end
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def product_option_value_id_previous_change; end
 
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def illustration_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
+    sig { params(from: ::Integer, to: ::Integer).returns(T::Boolean) }
+    def product_option_value_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
 
-    sig { returns(T.nilable(::String)) }
-    def illustration_previously_was; end
+    sig { returns(T.nilable(::Integer)) }
+    def product_option_value_id_previously_was; end
 
-    sig { returns(T.nilable(::String)) }
-    def illustration_was; end
+    sig { returns(T.nilable(::Integer)) }
+    def product_option_value_id_was; end
 
     sig { void }
-    def illustration_will_change!; end
-
-    sig { returns(::String) }
-    def name; end
-
-    sig { params(value: ::String).returns(::String) }
-    def name=(value); end
-
-    sig { returns(T::Boolean) }
-    def name?; end
-
-    sig { returns(T.nilable(::String)) }
-    def name_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def name_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def name_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def name_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def name_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def name_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def name_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def name_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def name_was; end
-
-    sig { void }
-    def name_will_change!; end
-
-    sig { returns(::String) }
-    def product_option_id; end
-
-    sig { params(value: ::String).returns(::String) }
-    def product_option_id=(value); end
-
-    sig { returns(T::Boolean) }
-    def product_option_id?; end
-
-    sig { returns(T.nilable(::String)) }
-    def product_option_id_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def product_option_id_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def product_option_id_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def product_option_id_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def product_option_id_change_to_be_saved; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def product_option_id_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def product_option_id_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def product_option_id_previous_change; end
-
-    sig { params(from: ::String, to: ::String).returns(T::Boolean) }
-    def product_option_id_previously_changed?(from: T.unsafe(nil), to: T.unsafe(nil)); end
-
-    sig { returns(T.nilable(::String)) }
-    def product_option_id_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def product_option_id_was; end
-
-    sig { void }
-    def product_option_id_will_change!; end
+    def product_option_value_id_will_change!; end
 
     sig { void }
     def restore_created_at!; end
@@ -942,13 +795,7 @@ class VariantOptionValue
     def restore_id_value!; end
 
     sig { void }
-    def restore_illustration!; end
-
-    sig { void }
-    def restore_name!; end
-
-    sig { void }
-    def restore_product_option_id!; end
+    def restore_product_option_value_id!; end
 
     sig { void }
     def restore_updated_at!; end
@@ -974,23 +821,11 @@ class VariantOptionValue
     sig { returns(T::Boolean) }
     def saved_change_to_id_value?; end
 
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_illustration; end
+    sig { returns(T.nilable([::Integer, ::Integer])) }
+    def saved_change_to_product_option_value_id; end
 
     sig { returns(T::Boolean) }
-    def saved_change_to_illustration?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_name; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_name?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_product_option_id; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_product_option_id?; end
+    def saved_change_to_product_option_value_id?; end
 
     sig { returns(T.nilable([::ActiveSupport::TimeWithZone, ::ActiveSupport::TimeWithZone])) }
     def saved_change_to_updated_at; end
@@ -1104,13 +939,7 @@ class VariantOptionValue
     def will_save_change_to_id_value?; end
 
     sig { returns(T::Boolean) }
-    def will_save_change_to_illustration?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_name?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_product_option_id?; end
+    def will_save_change_to_product_option_value_id?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end
@@ -1158,9 +987,6 @@ class VariantOptionValue
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelationGroupChain) }
     def group(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
-    def grouped_names(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def having(*args, &blk); end
@@ -1265,13 +1091,7 @@ class VariantOptionValue
     def with(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
-    def with_attached_image(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def with_recursive(*args, &blk); end
-
-    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
-    def with_variant_position(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def without(*args, &blk); end

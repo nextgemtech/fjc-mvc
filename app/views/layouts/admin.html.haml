@@ -3,7 +3,7 @@
   %head
     = render "layouts/head"
     = display_meta_tags site: t("brand.admin")
-  %body.flex.h-full
+  %body.flex.h-screen
     = render FlashComponent.new
     = render "layouts/sidebar"
     %main.flex-1.overflow-auto{class: "bg-[#f5f5f5]"}

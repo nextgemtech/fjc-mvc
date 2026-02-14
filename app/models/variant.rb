@@ -19,13 +19,6 @@ class Variant < ApplicationRecord
   scope :not_master, -> { where(is_master: false) }
   scope :master, -> { where(is_master: true) }
   scope :stock_sum, -> { sum(:count_on_hand) }
-  scope :grouped_option_name,
-        lambda {
-          select("variants.*, STRING_AGG(vov.name, ', ' ORDER BY po.position) AS grouped_name")
-            .joins('LEFT JOIN variant_option_values AS vov ON variants.id = vov.variant_id')
-            .joins('LEFT JOIN product_options AS po ON po.id = vov.product_option_id')
-            .group('variants.id, vov.variant_id')
-        }
 
   # Validations
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0, only_float: true }

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class VariantOptionValue < ApplicationRecord
+  acts_as_list scope: %i[variant_id product_option_value_id]
+
   # Relations
   belongs_to :variant
   belongs_to :product_option_value
@@ -13,6 +15,7 @@ end
 # Table name: variant_option_values
 #
 #  id                      :uuid             not null, primary key
+#  position                :integer
 #  created_at              :datetime         not null
 #  updated_at              :datetime         not null
 #  product_option_value_id :bigint           not null

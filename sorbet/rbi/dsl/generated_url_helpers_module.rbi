@@ -40,6 +40,9 @@ module GeneratedUrlHelpersModule
   def admin_product_images_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def admin_product_option_values_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def admin_product_stock_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

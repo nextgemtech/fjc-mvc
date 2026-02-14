@@ -6,6 +6,8 @@
   .block
     - if user_signed_in?
       .flex.gap-1.flex-col
+        .font-semibold.text-lg
+          My Account
         %span
           - if current_user.name.present?
             = current_user.name

@@ -1,7 +1,8 @@
-.cart-item.grid.sm:gap-3.gap-4.sm:grid-cols-7.sm:py-5.py-4.sm:px-0.px-3.sm:place-items-center{id: "cart-#{cart.id}", data: {controller: "carts--item"}}
+.cart-item.grid.sm:gap-3.gap-2.sm:grid-cols-7.sm:py-5.py-4.sm:px-0.px-3.sm:place-items-center{id: "cart-#{cart.id}", data: {controller: "carts--item"}}
   = render Carts::Item::UpdateUrlComponent.new cart:
   = render Carts::Item::DetailsComponent.new cart:, sale: sale?(cart.variant)
   = render Carts::Item::UnitpriceComponent.new cart:, price: cart.price, currency: cart.currency, discount: cart.discount_percent
   = render Carts::Item::QtyComponent.new cart:, count_on_hand: cart.count_on_hand, sale: sale?(cart.variant)   
-  = render Carts::Item::TotalpriceComponent.new cart:, price: cart.price, currency: cart.currency, discount: cart.discount_percent
+  .sm:block.hidden
+    = render Carts::Item::TotalpriceComponent.new cart:, price: cart.price, currency: cart.currency, discount: cart.discount_percent
   = render Carts::Item::ActionsComponent.new cart:

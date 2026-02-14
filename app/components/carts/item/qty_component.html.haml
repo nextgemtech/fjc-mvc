@@ -1,4 +1,4 @@
-.grid.gap-1{id: "cart-#{cart.id}-qty"}
+.sm:grid.sm:gap-1.flex.items-center.gap-3{id: "cart-#{cart.id}-qty"}
   #quantity-container
     #quantity.small
       = button_tag class: "decrement transition-colors duration-200", data: {action: "click->carts--item#decrement"} do

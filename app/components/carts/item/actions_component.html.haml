@@ -1,3 +1,3 @@
-.flex.gap-2{id: "cart-#{@cart.id}-actions"}
+.sm:flex.gap-2.hidden{id: "cart-#{@cart.id}-actions"}
   = button_to cart_path(@cart.id), disabled: cannot?(:destroy, @cart), class: "hover:text-red-600 disabled:cursor-not-allowed disabled:text-gray-200 sm:hover:underline transition-all", method: :delete, form: {data: {turbo_confirm: 'Are you sure to delete this cart?'}}, data: {"carts--item-target": "delete"} do
     Delete

@@ -61,9 +61,9 @@ class Variant < ApplicationRecord
         {
           capture_product_name: product.name,
           capture_product_id: product.id,
+          capture_product_currency: product.currency,
           capture_variant_pair: option_pair,
-          capture_variant_master: is_master,
-          capture_product_currency: product.currency
+          capture_variant_master: is_master
         }
       )
     end

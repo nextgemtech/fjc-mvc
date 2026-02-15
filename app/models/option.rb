@@ -11,6 +11,8 @@ class Option < ApplicationRecord
 
   # Validations
   validates :name, presence: true, uniqueness: true
+
+  normalizes :name, with: ->(name) { name.gsub(' ', '-').downcase.squish }
 end
 
 # == Schema Information

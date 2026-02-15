@@ -11,7 +11,7 @@ end
 # Table name: options
 #
 #  id           :uuid             not null, primary key
-#  display_name :string
+#  display_name :string           not null
 #  name         :string           not null
 #  placeholder  :string
 #  position     :integer

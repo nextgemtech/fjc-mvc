@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :option do
     name { Faker::Commerce.material }
+    display_name { Faker::Commerce.material }
   end
 end
 

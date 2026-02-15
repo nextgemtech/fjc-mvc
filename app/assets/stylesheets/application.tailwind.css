@@ -340,7 +340,7 @@ dialog[data-dialog-target="dialog"][closing] {
 }
 
 .returned-status {
-  @apply w-fit h-fit bg-fuchsia-600/10 border border border-fuchsia-600 px-2 rounded-md text-sm text-fuchsia-600;
+  @apply w-fit h-fit bg-fuchsia-600/10 border border-fuchsia-600 px-2 rounded-md text-sm text-fuchsia-600;
 }
 
 .refunded-status {
@@ -351,5 +351,5 @@ dialog[data-dialog-target="dialog"][closing] {
 }
 
 trix-toolbar .trix-button.trix-active {
-  @apply !bg-primary/20;
+  @apply !bg-primary/70;
 }

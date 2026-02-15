@@ -2,7 +2,7 @@
   - if @carousel.present?
     .w-full.relative{class: "sm:h-[480px] md:h-[420px] h-[390px] sm:max-h-[480px] md:max-h-[420px] max-h-[390px]"}
       - @carousel.each_with_index do |image, index|
-        = image_tag image, size: 420, alt: "VariantImage", data: {"products--carousel-target": "main", position: index + 1}, class: class_names("w-full h-full object-center object-cover border border-gray-100 absolute top-0", hidden: index >= 1)
+        = image_tag image, size: 420, alt: "VariantImage", data: {"products--carousel-target": "main", position: index + 1}, class: class_names("w-full h-full object-center object-cover absolute top-0", hidden: index >= 1)
     .grid.grid-cols-5.relative{data: {"products--carousel-target": "items", total_items: @carousel.size, left_most: 1, right_most: 5, max: 5}, class: "sm:gap-2.5 gap-1"}
       - @carousel.each_with_index do |image, index|
         %label{class: class_names(hidden: index >= 5)}

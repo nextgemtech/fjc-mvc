@@ -3,9 +3,9 @@
   - description seo.meta_description
   - keywords seo.meta_keywords
 
-.w-full.margin-max-screen.py-5{data: {controller: "products--public", pid: @product.id}}
-  = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, class: "hidden", data: {"products--public-target": "userSignedIn"}
-  .flex.sm:gap-8.gap-3.bg-white.sm:pt-3.sm:pb-9.pb-5.rounded-sm.md:flex-row.flex-col
+.mx-auto.max-w-margin.md:px-4.lg:px-8.w-full.py-0.md:py-2{class: "px-1.5", data: {controller: "products--public", pid: @product.id}}
+  = check_box_tag 'user_signed_in', 'signed_id', user_signed_in?, disabled: true, class: "hidden", data: {"products--public-target": "userSignedIn"}
+  .relative.flex.sm:gap-8.gap-3.bg-white.sm:pt-3.sm:pb-9.pb-5.rounded-sm.md:flex-row.flex-col
     = render "image_carousel"
     .flex.flex-col.w-full.sm:gap-7.gap-4
       .grid.gap-2

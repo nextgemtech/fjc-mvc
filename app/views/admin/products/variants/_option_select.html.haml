@@ -3,6 +3,8 @@
     - if product_option.option.display_name.present?
       = "(#{product_option.option.display_name})"
     = product_option.option.name
+    - if product_option.option.placeholder.present?
+      = product_option.option.placeholder
   .block{class: "relative inline-block text-left"}
     = vov_form.hidden_field :product_option_value_id, value: vov_form.object.product_option_value_id, data: {"admin--products--variants--options-dropdown-target": "povField"}
     = icon "fa-solid", "chevron-down", class: "text-sm text-gray-500 absolute top-3.5 right-3"
